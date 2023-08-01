@@ -1,0 +1,293 @@
+/* Fonts */
+@font-face {
+  font-family: Panda;
+  font-display: swap;
+  src: url(../fonts/panda.ttf);
+  src: url(../fonts/panda.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Menu Icon */
+li.toplevel_page_panda_robots div.wp-menu-image:before {
+  font-family: Panda;
+  content: "\0061";
+  width: 25px !important;
+  font-size: 25px !important;
+  margin-top: -5px;
+}
+
+/* Global */
+.toplevel_page_panda_robots #wpcontent {
+  padding-left: 0;
+}
+
+.toplevel_page_panda_robots .wrap {
+  font-size: 14px;
+  min-height: calc(100vh - 100px);
+  margin: 0;
+  padding: 0;
+}
+
+.toplevel_page_panda_robots header {
+  padding: 20px 10px;
+}
+
+.toplevel_page_panda_robots nav {
+  box-sizing: border-box;
+  background: #ffffff;
+  border: none;
+  max-width: 100%;
+  width: 910px;
+  padding: 0 20px;
+  margin: 0 20px;
+}
+
+.panda-container {
+  max-width: 100%;
+  width: 910px;
+  margin: 0 20px;
+}
+
+.toplevel_page_panda_robots #logo-icon {
+  max-height: 50px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+#panda-content {
+  background: white;
+  padding: 20px;
+}
+
+.toplevel_page_panda_robots p {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Button */
+.button-danger {
+  background-color: #d63638 !important;
+  border-color: #d63638 !important;
+}
+
+.button-danger:hover {
+  background-color: #be3132 !important;
+  border-color: #be3132 !important;
+}
+
+.button-danger:focus {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 3px #be3132 !important;
+}
+
+/* Tabs */
+.toplevel_page_panda_robots .ui-tabs {
+  position: relative;
+  max-width: 100%;
+  padding: 0px;
+  margin: 0;
+  zoom: 1;
+}
+
+.toplevel_page_panda_robots .ui-tabs .ui-tabs-nav {
+  margin: 0;
+  padding: 0;
+}
+
+.toplevel_page_panda_robots .ui-tabs .ui-tabs-nav li {
+  list-style: none;
+  position: relative;
+  top: 1px;
+  margin: 0 0.2em 1px 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.toplevel_page_panda_robots .ui-tabs .ui-tabs-nav li a {
+  text-decoration: none;
+}
+
+.toplevel_page_panda_robots ul.ui-tabs-nav.panda-main-tab li.ui-state-active {
+  background: transparent;
+  border-bottom: 2px solid #3a9bd5;
+  _transition: all 0.4s ease-out;
+}
+
+.toplevel_page_panda_robots .ui-tabs .ui-tabs-nav li.ui-tabs-selected a,
+.toplevel_page_panda_robots .ui-tabs .ui-tabs-nav li.ui-state-disabled a,
+.toplevel_page_panda_robots .ui-tabs .ui-tabs-nav li.ui-state-processing a {
+  cursor: text;
+}
+
+.toplevel_page_panda_robots .ui-tabs .ui-tabs-nav li a,
+.toplevel_page_panda_robots
+  .ui-tabs.ui-tabs-collapsible
+  .ui-tabs-nav
+  li.ui-tabs-selected
+  a {
+  cursor: pointer;
+}
+
+.toplevel_page_panda_robots .ui-tabs .ui-tabs-panel {
+  border: none;
+  display: block;
+  overflow: visible;
+}
+
+.toplevel_page_panda_robots .ui-tabs .ui-tabs-hide {
+  display: none !important;
+}
+
+.toplevel_page_panda_robots .ui-tabs .ui-tabs-nav li a {
+  display: block;
+  color: #616161;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 32px;
+  padding: 5px 0;
+}
+
+.toplevel_page_panda_robots .ui-tabs ul.ui-tabs-nav li.ui-state-active .icon {
+  color: #666666;
+}
+
+.toplevel_page_panda_robots .ui-tabs-nav:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+.toplevel_page_panda_robots .ui-tabs-anchor,
+.nav-tab {
+  outline: none !important;
+}
+
+.toplevel_page_panda_robots .ui-tabs ul.ui-tabs-nav li {
+  border-bottom: 2px solid transparent;
+  color: #aaaaaa;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: none;
+  display: inline-block;
+  margin: 0px 20px 0px 5px;
+  padding: 0;
+}
+
+.toplevel_page_panda_robots .ui-tabs ul.ui-tabs-nav li .label {
+  display: block;
+  margin-top: -10px;
+}
+
+.toplevel_page_panda_robots .ui-tabs ul.ui-tabs-nav li:first-child {
+  margin-left: 0;
+}
+
+.toplevel_page_panda_robots ul.ui-tabs-nav.panda-main-tab {
+  box-sizing: border-box;
+  width: 100%;
+  margin-left: -20px;
+  padding-bottom: 0;
+}
+
+.toplevel_page_panda_robots .ui-state-hover a,
+.toplevel_page_panda_robots .ui-state-active a,
+.toplevel_page_panda_robots li.ui-state-hover,
+.toplevel_page_panda_robots li.ui-state-hover a {
+  color: #000000 !important;
+}
+
+.toplevel_page_panda_robots .ui-tabs ul.ui-tabs-nav li.ui-state-hover {
+  background-color: #ffffff !important;
+  border-bottom: 2px solid #3a9bd5;
+}
+
+.toplevel_page_panda_robots .ui-tabs-nav a:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+/* Form */
+.form-wrap .form-field {
+  margin: 1em 0;
+  padding: 0;
+}
+
+.form-wrap .form-field label {
+  color: #1d2327;
+  font-weight: 400;
+  text-shadow: none;
+  display: block;
+  padding: 2px 0;
+  vertical-align: baseline;
+}
+
+.form-wrap .form-field p {
+  color: #646970;
+  font-size: 13px;
+  line-height: 1.5 !important;
+  margin: 2px 0 5px;
+}
+
+.form-wrap p,
+p.description,
+p.help,
+span.description {
+  font-size: 13px !important;
+  line-height: 1.5em !important;
+}
+
+/* Table */
+.logs-table {
+  table-layout: fixed;
+}
+
+.logs-table td {
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+.logs-table td:nth-child(1) {
+  width: 30%;
+}
+
+.logs-table td:nth-child(2) {
+  width: 30%;
+}
+
+.logs-table td:nth-child(3) {
+  width: 40%;
+}
+
+/* Footer */
+.toplevel_page_panda_robots #wpfooter {
+  margin-left: 0;
+}
+
+/* Responsive */
+@media screen and (max-width: 1520px) {
+  .panda-container,
+  .toplevel_page_panda_robots nav {
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .panda-container,
+  .toplevel_page_panda_robots nav {
+    width: unset;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .toplevel_page_panda_robots .ui-tabs .ui-tabs-nav {
+    padding: 0 25px;
+  }
+
+  .toplevel_page_panda_robots .ui-tabs ul.ui-tabs-nav li {
+    margin: 0px 10px 0px 5px;
+  }
+}
