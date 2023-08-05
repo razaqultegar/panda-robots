@@ -21,9 +21,9 @@ if (!defined('ABSPATH')) {
  * @param string $log_trigger - Provides information about what calls the function.
  * @param mixed  $log_data - Provides extra data about the logged event.
  **/
-function panda_log($log_trigger, $log_data = '')
+function panda_logs($log_trigger, $log_data = '')
 {
-    $panda_log = get_option('panda_log');
+    $panda_log = get_option('panda_logs');
     if (false === $panda_log) {
         $panda_log = array();
     } else {
@@ -50,7 +50,7 @@ function panda_log($log_trigger, $log_data = '')
     );
     $panda_log[] = $log_entry;
 
-    update_option('panda_log', wp_json_encode($panda_log));
+    update_option('panda_logs', wp_json_encode($panda_log));
 }
 
 /**
@@ -58,9 +58,9 @@ function panda_log($log_trigger, $log_data = '')
  *
  * * @return void
  **/
-function panda_display_log()
+function panda_display_logs()
 {
-    $panda_log = get_option('panda_log');
+    $panda_log = get_option('panda_logs');
     echo '
     <table class="widefat striped logs-table">
         <thead>
@@ -113,5 +113,36 @@ function panda_display_log()
         echo '<form action="" method="post" class="form-wrap validate">';
         echo '<p class="submit"><input type="submit" class="button button-primary button-danger" name="logs_reset" value="Hapus Log"></p>';
         echo '</form>';
+    }
+}
+
+// Init Panda Feeds Options.
+function init_panda_feeds()
+{
+    $feeds = array(
+        'panda'   => array(
+            'link'         => 'https://feed.panda.id/',
+            'url'          => 'https://feed.panda.id/feed/',
+            'title'        => 'Panda Feed',
+            'items'        => 20,
+        ),
+    );
+
+    panda_feeds_output('panda_feeds', $feeds);
+}
+
+/**
+ * Displays the Panda Feeds.
+ * 
+ * @param string $section   Section ID.
+ * @param array  $feeds     Array of RSS feeds.
+ */
+function panda_feeds_output($section, $feeds)
+{
+    foreach ($feeds as $type => $args) {
+        $args['type'] = $type;
+        echo '<div class="rss-widget">';
+        wp_widget_rss_output($args['url'], $args);
+        echo '</div>';
     }
 }

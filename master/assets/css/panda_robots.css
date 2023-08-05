@@ -8,6 +8,61 @@
   font-style: normal;
 }
 
+/* Welcome Notices */
+.panda-notice {
+  background: #e7f5f9;
+  display: flex;
+  align-items: center;
+}
+
+.panda-notice::before,
+.panda-notice::after {
+  content: "";
+  display: table;
+}
+
+.panda-notice::after {
+  clear: both;
+}
+
+.panda-notice .icon {
+  background: #fff;
+  border-radius: 100%;
+  display: block;
+  flex-shrink: 0;
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin: 20px 17px 20px 5px;
+}
+
+.panda-notice .icon img {
+  box-sizing: border-box;
+  position: absolute;
+  max-width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 12px;
+}
+
+.panda-notice .notice-content {
+  margin: 22px 0 23px;
+}
+
+.panda-notice h2 {
+  color: #2e4453;
+  font-weight: bolder;
+  margin: 0 0 10px;
+}
+
+.panda-notice p {
+  margin: 0;
+  padding: 0;
+}
+
 /* Menu Icon */
 li.toplevel_page_panda_robots div.wp-menu-image:before {
   font-family: Panda;
@@ -17,7 +72,7 @@ li.toplevel_page_panda_robots div.wp-menu-image:before {
   margin-top: -5px;
 }
 
-/* Global */
+/* Menu Pages */
 .toplevel_page_panda_robots #wpcontent {
   padding-left: 0;
 }
@@ -30,25 +85,24 @@ li.toplevel_page_panda_robots div.wp-menu-image:before {
 }
 
 .toplevel_page_panda_robots header {
-  padding: 20px 10px;
+  padding: 20px 20px;
 }
 
-.toplevel_page_panda_robots nav {
-  box-sizing: border-box;
-  background: #ffffff;
-  border: none;
-  max-width: 100%;
-  width: 910px;
-  padding: 0 20px;
-  margin: 0 20px;
+.toplevel_page_panda_robots p:first-child {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 0px;
 }
 
-.panda-container {
-  max-width: 100%;
-  width: 910px;
-  margin: 0 20px;
+.toplevel_page_panda_robots .col-left .panda-container {
+  margin: 0 8px 0 20px;
 }
 
+.toplevel_page_panda_robots .col-right .panda-container {
+  margin: 0 20px 0 8px;
+}
+
+/* Menu Pages - Logo */
 .toplevel_page_panda_robots #logo-icon {
   max-height: 50px;
   width: auto;
@@ -56,17 +110,7 @@ li.toplevel_page_panda_robots div.wp-menu-image:before {
   padding: 0;
 }
 
-#panda-content {
-  background: white;
-  padding: 20px;
-}
-
-.toplevel_page_panda_robots p {
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-/* Button */
+/* Menu Pages - Button */
 .button-danger {
   background-color: #d63638 !important;
   border-color: #d63638 !important;
@@ -81,18 +125,26 @@ li.toplevel_page_panda_robots div.wp-menu-image:before {
   box-shadow: 0 0 0 1px #fff, 0 0 0 3px #be3132 !important;
 }
 
-/* Tabs */
+/* Menu Pages - Tabs */
 .toplevel_page_panda_robots .ui-tabs {
   position: relative;
   max-width: 100%;
-  padding: 0px;
   margin: 0;
+  padding: 0px;
   zoom: 1;
 }
 
 .toplevel_page_panda_robots .ui-tabs .ui-tabs-nav {
   margin: 0;
   padding: 0;
+}
+
+.toplevel_page_panda_robots nav {
+  box-sizing: border-box;
+  background: #ffffff;
+  border: none;
+  margin: 0 8px 0 20px;
+  padding: 0 20px;
 }
 
 .toplevel_page_panda_robots .ui-tabs .ui-tabs-nav li {
@@ -210,84 +262,130 @@ li.toplevel_page_panda_robots div.wp-menu-image:before {
   -webkit-box-shadow: none;
 }
 
-/* Form */
-.form-wrap .form-field {
-  margin: 1em 0;
-  padding: 0;
-}
-
-.form-wrap .form-field label {
-  color: #1d2327;
-  font-weight: 400;
-  text-shadow: none;
-  display: block;
-  padding: 2px 0;
-  vertical-align: baseline;
-}
-
-.form-wrap .form-field p {
-  color: #646970;
+#panda-content {
+  background: #ffffff;
   font-size: 13px;
-  line-height: 1.5 !important;
-  margin: 2px 0 5px;
+  line-height: 1.4;
+  padding: 20px;
 }
 
-.form-wrap p,
-p.description,
-p.help,
-span.description {
-  font-size: 13px !important;
-  line-height: 1.5em !important;
+/* Menu Pages - Forms */
+.form-wrap .panda-upload-field {
+  width: 83.6% !important;
 }
 
-/* Table */
-.logs-table {
-  table-layout: fixed;
+.form-wrap .panda-upload-buttons {
+  display: inline-block;
+  vertical-align: top;
 }
 
-.logs-table td {
-  box-sizing: border-box;
-  word-wrap: break-word;
+/* Menu Pages - Feeds */
+.panda-feed {
+  background: #ffffff;
+  min-width: 255px;
 }
 
-.logs-table td:nth-child(1) {
-  width: 30%;
+.panda-feed-header {
+  border-bottom: 1px solid #f0f0f1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.logs-table td:nth-child(2) {
-  width: 30%;
+.panda-feed-header h2 {
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 32px;
+  margin: 5px 20px;
 }
 
-.logs-table td:nth-child(3) {
-  width: 40%;
+.panda-feed .activity-block {
+  background-color: #f6f7f7;
+  border-bottom: none;
+  margin: 0px;
+  padding: 10px 20px;
 }
 
-/* Footer */
-.toplevel_page_panda_robots #wpfooter {
-  margin-left: 0;
+.panda-feed .activity-block p {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0px;
+}
+
+.panda-feed-body .rss-widget {
+  font-size: 13px;
+  padding: 10px 20px;
+}
+
+.panda-feed-body .rss-widget ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panda-feed-body .rss-widget ul li {
+  line-height: 1.5;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.panda-feed-body .rss-widget a {
+  font-weight: 400;
+}
+
+.panda-feed-footer {
+  border-top: 1px solid #f0f0f1;
+  color: #dcdcde;
+  margin-top: 0;
+  margin-bottom: 1px !important;
+  padding: 12px 20px;
+}
+
+.panda-feed-body li a,
+.panda-feed-footer a {
+  text-decoration: none;
+}
+
+.panda-feed-footer .screen-reader-text {
+  height: inherit;
+  white-space: nowrap;
 }
 
 /* Responsive */
-@media screen and (max-width: 1520px) {
-  .panda-container,
-  .toplevel_page_panda_robots nav {
-    width: 700px;
+@media only screen and (max-width: 799px) {
+  .toplevel_page_panda_robots .col-left,
+  .toplevel_page_panda_robots .col-right {
+    width: 100%;
   }
-}
 
-@media screen and (max-width: 1300px) {
-  .panda-container,
-  .toplevel_page_panda_robots nav {
-    width: unset;
+  .toplevel_page_panda_robots header {
+    padding: 20px 20px;
   }
-}
 
-@media screen and (max-width: 880px) {
   .toplevel_page_panda_robots .ui-tabs .ui-tabs-nav {
     padding: 0 25px;
   }
 
+  .toplevel_page_panda_robots .panda-container,
+  .toplevel_page_panda_robots nav {
+    margin: unset;
+  }
+
   .toplevel_page_panda_robots .ui-tabs ul.ui-tabs-nav li {
     margin: 0px 10px 0px 5px;
+  }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1499px) {
+  .toplevel_page_panda_robots .col-left {
+    float: left;
+    width: 56.5%;
+  }
+
+  .toplevel_page_panda_robots .col-right {
+    float: right;
+    width: 43.5%;
   }
 }

@@ -47,7 +47,7 @@ if (!class_exists('Panda_Robots')) :
 			add_menu_page(
 				$this->panda_menu_title,
 				$this->panda_menu_title,
-				'import',
+				'manage_options',
 				$this->panda_menu_slug,
 				array($this, 'panda_robots_menu_page'),
 				null,
@@ -70,59 +70,57 @@ if (!class_exists('Panda_Robots')) :
 			wp_enqueue_script('jquery-ui-tabs');
 			wp_enqueue_script('jquery-ui-dialog');
 			wp_enqueue_script('panda', get_stylesheet_directory_uri() . '/master/assets/js/panda_robots.js', array('jquery'), wp_get_theme()->get('Version'), true);
+
+			wp_enqueue_script('panda_panel_uploader', get_stylesheet_directory_uri() . '/master/assets/js/custom_uploader.js', array('jquery', 'media-upload', 'thickbox'), wp_get_theme()->get('Version'));
+			wp_enqueue_media();
+			wp_localize_script('panda_panel_uploader', 'panda_uploader', array(
+				'media_window_title' => 'Pilih Gambar',
+			));
 		}
 
 		// Main Pages for Admin Menus
 		public function panda_robots_menu_page()
 		{
-			echo '<div class="wrap">';
-
-			echo '<header>';
-			echo '<div class="panda-container">';
-			echo '<img id="logo-icon" src="' . get_stylesheet_directory_uri() . '/master/assets/images/panda.png" title="Robot Panda" alt="Robot Panda">';
-			echo '</div>';
-			echo '</header>';
-
-			echo '<div id="panda-tabs" class="ui-tabs" style="display:none">';
-
-			// tabs
-			echo '<nav>';
-			echo '<div class="panda-container">';
-			echo '<ul class="panda-main-tab">';
-			echo '<li><a href="#tab-configurations">Konfigurasi</a></li>';
-			echo '<li><a href="#tab-imports">Impor Demo</a></li>';
-			echo '<li><a href="#tab-logs">Log</a></li>';
-			echo '<li><a href="#tab-supports">Bantuan</a></li>';
-			echo '</ul>';
-			echo '</div>';
-			echo '</nav>';
-
-			// tab
-			echo '<div class="panda-container">';
-			echo '<div id="panda-content">';
-
-			echo '<div id="tab-configurations" style="display:none">';
-			$this->tab_configurations();
-			echo '</div>';
-
-			echo '<div id="tab-imports" style="display:none">';
-			$this->tab_imports();
-			echo '</div>';
-
-			echo '<div id="tab-logs" style="display:none">';
-			$this->tab_logs();
-			echo '</div>';
-
-			echo '<div id="tab-supports" style="display:none">';
-			$this->tab_supports();
-			echo '</div>';
-
-			echo '</div>'; //content
-			echo '<div>'; // container
-
-			echo '</div>'; // tabs
-
-			echo '</div>'; // wrap
+?>
+			<div class="wrap">
+				<header>
+					<img id="logo-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/master/assets/images/panda.png" title="Robot Panda" alt="Robot Panda" />
+				</header>
+				<div class="col-left">
+					<div id="panda-tabs" class="ui-tabs" style="display:none">
+						<nav>
+							<div class="panda-container">
+								<ul class="panda-main-tab">
+									<li><a href="#tab-configurations">Konfigurasi</a></li>
+									<li><a href="#tab-imports">Impor Demo</a></li>
+									<li><a href="#tab-logs">Log</a></li>
+									<li><a href="#tab-helps">Bantuan</a></li>
+								</ul>
+							</div>
+						</nav>
+						<div class="panda-container">
+							<div id="panda-content">
+								<div id="tab-configurations" style="display:none">
+									<?php echo $this->tab_configurations(); ?>
+								</div>
+								<div id="tab-imports" style="display:none">
+									<?php echo $this->tab_imports(); ?>
+								</div>
+								<div id="tab-logs" style="display:none">
+									<?php echo $this->tab_logs(); ?>
+								</div>
+								<div id="tab-helps" style="display:none">
+									<?php echo $this->tab_helps(); ?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-right">
+					<?php echo $this->panda_feeds(); ?>
+				</div>
+			</div>
+		<?php
 		}
 
 		/**
@@ -140,27 +138,59 @@ if (!class_exists('Panda_Robots')) :
 				update_option('admin_email', trim($_POST['new_admin_email']));
 				update_option('conf_phone', trim($_POST['conf_phone']));
 
-				echo '<div class="updated notice notice-success is-dismissible" style="padding-top: 10px; padding-bottom: 10px;"><strong>Robot Panda :</strong> Konfigruasi berhasil diperbarui</div>';
-
-				$update = array(get_option('conf_alias'), get_option('blogname'), get_option('blogdescription'), get_option('conf_address'), get_option('admin_email'), get_option('conf_phone'));
-				panda_log('Konfigurasi berhasil diperbarui', wp_json_encode($update));
+				$update = array(
+					get_option('conf_alias'),
+					get_option('blogname'),
+					get_option('blogdescription'),
+					get_option('conf_address'),
+					get_option('admin_email'),
+					get_option('conf_phone'),
+				);
+				panda_logs('Konfigurasi berhasil diperbarui', wp_json_encode($update));
 			endif;
-
-			echo '<p>The following table details what data will be deleted (reset or destroyed) when a selected reset tool is run. Please read it! ';
-			echo 'If something is not clear <a href="#" class="change-tab" data-tab="4">contact support</a> before running any tools. It\'s better to ask than to be sorry!';
-			echo '</p><hr>';
-
-			echo '<form action="" method="post" class="form-wrap validate">';
-
-			echo '<div class="form-field form-required"><label for="conf-alias">Nama Alias</label><input type="text" id="conf-alias" name="conf_alias" value="' . get_option('conf_alias') . '" size="40" aria-required="true" aria-describedby="conf-alias-description"><p id="conf-alias-description">Nama Alias adalah sebutan untuk nama desa di wilayah masing-masing.</p></div>';
-			echo '<div class="form-field form-required"><label for="blogname">Nama Desa</label><input type="text" id="blogname" name="blogname" value="' . get_option('blogname') . '" size="40" aria-required="true"></div>';
-			echo '<div class="form-field form-required"><label for="blogdescription">Kabupaten</label><input type="text" id="blogdescription" name="blogdescription" value="' . get_option('blogdescription') . '" size="40" aria-required="true"></div>';
-			echo '<div class="form-field form-required"><label for="conf-address">Alamat Lengkap</label><textarea id="conf-address" name="conf_address" rows="5" cols="40" aria-describedby="name-address">' . get_option('conf_address') . '</textarea><p id="name-address">Berisi alamat jalan, nomor kantor, desa, kecamatan, kabupaten, provinsi, dan kode pos.</p></div>';
-			echo '<div class="form-field form-required"><label for="new_admin_email">Alamat Surel</label><input type="email" id="new_admin_email" name="new_admin_email" value="' . get_option('admin_email') . '" size="40" aria-required="true"></div>';
-			echo '<div class="form-field form-required"><label for="conf-phone">No. Telepon/WhatsApp</label><input type="text" id="conf-phone" name="conf_phone" value="' . get_option('conf_phone') . '" size="40" aria-required="true" aria-describedby="name-phone"><p id="name-phone">Jika berisi nomor whatsap awali dengan kode negara (62).</p></div>';
-
-			echo '<p class="submit"><input type="submit" class="button button-primary" name="conf_submit" value="Simpan Perubahan"></p>';
-			echo '</form>';
+		?>
+			<p>Form berikut merinci data apa saja yang dibutuhkan untuk website desa Anda sehingga data akan ditampilkan secara dinamis. Silahkan diisi! Jika ada sesuatu yang tidak jelas, <a href="javascript:void(0)" class="change-tab" data-tab="3">hubungi bantuan</a> sebelum menyimpan apa pun. Lebih baik bertanya daripada tersesat!</p>
+			<hr>
+			<form action="" method="post" class="form-wrap">
+				<div class="form-field">
+					<label for="conf-logo">Logo</label>
+					<input id="divi_logo" class="panda-upload-field" type="text" size="40" name="divi_logo" value="<?php echo et_get_option('divi_logo'); ?>" />
+					<div class="panda-upload-buttons">
+						<input class="panda-upload-image-button button button-primary" type="button" data-button_text="Atur sebagai Logo" value="Unggah" />
+					</div>
+				</div>
+				<div class="form-field">
+					<label for="conf-alias">Nama Alias</label>
+					<input type="text" id="conf-alias" name="conf_alias" value="<?php echo get_option('conf_alias'); ?>" size="40" aria-describedby="conf-alias-description" />
+					<p id="conf-alias-description">Nama Alias adalah sebutan untuk nama desa di wilayah masing-masing.</p>
+				</div>
+				<div class="form-field">
+					<label for="blogname">Nama Desa</label>
+					<input type="text" id="blogname" name="blogname" value="<?php echo get_option('blogname'); ?>" size="40" />
+				</div>
+				<div class="form-field">
+					<label for="blogdescription">Kabupaten</label>
+					<input type="text" id="blogdescription" name="blogdescription" value="<?php echo get_option('blogdescription'); ?>" size="40" />
+				</div>
+				<div class="form-field">
+					<label for="conf-address">Alamat Lengkap</label>
+					<textarea id="conf-address" name="conf_address" rows="5" cols="40" aria-describedby="name-address"><?php echo get_option('conf_address'); ?></textarea>
+					<p id="name-address">Berisi alamat jalan, nomor kantor, desa, kecamatan, kabupaten, provinsi, dan kode pos.</p>
+				</div>
+				<div class="form-field">
+					<label for="new_admin_email">Alamat Surel</label>
+					<input type="email" id="new_admin_email" name="new_admin_email" value="<?php echo get_option('admin_email'); ?>" size="40" />
+				</div>
+				<div class="form-field">
+					<label for="conf-phone">No. Telepon/WhatsApp</label>
+					<input type="text" id="conf-phone" name="conf_phone" value="<?php echo get_option('conf_phone'); ?>" size="40" aria-describedby="name-phone" />
+					<p id="name-phone">Jika berisi nomor whatsap awali dengan kode negara (62).</p>
+				</div>
+				<p class="submit">
+					<input type="submit" class="button button-primary" name="conf_submit" value="Simpan Perubahan" />
+				</p>
+			</form>
+		<?php
 		}
 
 		/**
@@ -170,17 +200,53 @@ if (!class_exists('Panda_Robots')) :
 		 */
 		private function tab_imports()
 		{
-			echo '<p>The following table details what data will be deleted (reset or destroyed) when a selected reset tool is run. Please read it! ';
-			echo 'If something is not clear <a href="#" class="change-tab" data-tab="4">contact support</a> before running any tools. It\'s better to ask than to be sorry!';
-			echo '</p><hr>';
+		?>
+			<p>Form berikut merinci data apa saja yang harus diimporkan untuk website desa Anda sehingga akan menampilkan data website sama persis seperti website contoh Panda. Silahkan centang! Jika ada sesuatu yang tidak jelas, <a href="javascript:void(0)" class="change-tab" data-tab="3">hubungi bantuan</a> sebelum mengimpor data apa pun. Lebih baik bertanya daripada tersesat!</p>
+			<hr>
 
-			echo '<form action="" method="post" class="form-wrap validate">';
-
-			echo '<div class="form-field form-required"><label for="post-size">Ukuran Pasca Batch</label><input type="text" id="post-size" name="batch_size_field" value="10" size="40" aria-required="true"></div>';
-			echo '<div class="form-field form-required"><label for="media-size">Ukuran Batch Media</label><input type="text" id="media-size" name="media_batch_size_field" value="10" size="40" aria-required="true"></div>';
-
-			echo '<p class="submit"><input type="submit" class="button button-primary" name="imp_submit" value="Simpan Perubahan"></p>';
-			echo '</form>';
+			<form action="" method="post">
+				<input type="hidden" id="post-size" name="batch_size_field" value="10" />
+				<input type="hidden" id="media-size" name="media_batch_size_field" value="10" />
+				<p>
+					<label for="import-posts">
+						<input type="checkbox" id="import-posts" name="panda_import_posts_checkbox" value="1" checked /> Impor Postingan
+					</label>
+				</p>
+				<p>
+					<label for="import-media">
+						<input type="checkbox" id="import-media" name="panda_import_media_checkbox" value="1" checked /> Impor Media
+					</label>
+				</p>
+				<p>
+					<label for="import-menus">
+						<input type="checkbox" id="import-menus" name="panda_import_menus_checkbox" value="1" checked /> Impor Menu
+					</label>
+				</p>
+				<p>
+					<label for="import-homepage">
+						<input type="checkbox" id="import-homepage" name="panda_import_homepage_checkbox" value="1" checked /> Impor Halaman Utama &amp; Kabar Desa
+					</label>
+				</p>
+				<p>
+					<label for="import-options">
+						<input type="checkbox" id="import-options" name="panda_import_options_checkbox" value="1" checked /> Impor Pengaturan Tema
+					</label>
+				</p>
+				<p>
+					<label for="import-builder">
+						<input type="checkbox" id="import-builder" name="panda_import_builder_checkbox" value="1" checked /> Impor Template Halaman
+					</label>
+				</p>
+				<p>
+					<label for="import-wordpress">
+						<input type="checkbox" id="import-wordpress" name="panda_import_wordpress_checkbox" value="1" checked /> Impor Pengaturan WordPress
+					</label>
+				</p>
+				<p class="submit">
+					<input type="submit" class="button button-primary" name="imp_submit" value="Mulai Impor" />
+				</p>
+			</form>
+		<?php
 		}
 
 		/**
@@ -190,13 +256,13 @@ if (!class_exists('Panda_Robots')) :
 		 */
 		private function tab_logs()
 		{
-			if(isset($_POST['logs_reset'])) {
-				delete_option('panda_log');
+			if (isset($_POST['logs_reset'])) {
+				delete_option('panda_logs');
 
 				echo '<div class="updated notice notice-success is-dismissible" style="padding-top: 10px; padding-bottom: 10px;"><strong>Robot Panda :</strong> Log berhasil dihapus</div>';
 			}
 
-			panda_display_log();
+			panda_display_logs();
 		}
 
 		/**
@@ -204,11 +270,54 @@ if (!class_exists('Panda_Robots')) :
 		 *
 		 * @return null
 		 */
-		private function tab_supports()
+		private function tab_helps()
 		{
-			echo '<p>The following table details what data will be deleted (reset or destroyed) when a selected reset tool is run. Please read it! ';
-			echo 'If something is not clear <a href="#" class="change-tab" data-tab="4">contact support</a> before running any tools. It\'s better to ask than to be sorry!';
-			echo '</p><hr>';
+		?>
+			<p>The following table details what data will be deleted (reset or destroyed) when a selected reset tool is run. Please read it! If something is not clear <a href="#" class="change-tab" data-tab="4">contact support</a> before running any tools. It\'s better to ask than to be sorry!</p>
+			<hr>
+
+		<?php
+		}
+
+		/**
+		 * Content for Feeds on Sidebar
+		 *
+		 * @return null
+		 */
+		private function panda_feeds()
+		{
+		?>
+			<div class="panda-feed">
+				<div class="panda-feed-header">
+					<h2>Feed Desa</h2>
+				</div>
+				<div class="panda-feed-body hide-if-no-js">
+					<div class="activity-block">
+						<p>Baca kabar desa lainnya yang sudah menggunakan Teknologi Panda.</p>
+					</div>
+					<?php init_panda_feeds(); ?>
+				</div>
+				<p class="panda-feed-footer">
+					<a href="https://feed.panda.id" target="_blank">
+						Feed Desa
+						<span class="screen-reader-text">(opens in a new tab)</span>
+						<span aria-hidden="true" class="dashicons dashicons-external"></span>
+					</a>
+					|
+					<a href="https://panda.id" target="_blank">
+						Panda SID
+						<span class="screen-reader-text">(opens in a new tab)</span>
+						<span aria-hidden="true" class="dashicons dashicons-external"></span>
+					</a>
+					|
+					<a href="https://puskomedia.id" target="_blank">
+						Puskomedia Indonesia
+						<span class="screen-reader-text">(opens in a new tab)</span>
+						<span aria-hidden="true" class="dashicons dashicons-external"></span>
+					</a>
+				</p>
+			</div>
+<?php
 		}
 	}
 endif;
