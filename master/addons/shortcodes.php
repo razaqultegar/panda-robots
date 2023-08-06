@@ -48,29 +48,11 @@ function pd_conf_alias()
 }
 add_shortcode('conf_alias', 'pd_conf_alias');
 
-function pd_blogname()
-{
-    return get_option('blogname');
-}
-add_shortcode('blogname', 'pd_blogname');
-
-function pd_blogdescription()
-{
-    return get_option('blogdescription');
-}
-add_shortcode('blogdescription', 'pd_blogdescription');
-
 function pd_conf_address()
 {
     return get_option('conf_address');
 }
 add_shortcode('conf_address', 'pd_conf_address');
-
-function pd_admin_email()
-{
-    return get_option('admin_email');
-}
-add_shortcode('admin_email', 'pd_admin_email');
 
 function pd_conf_phone()
 {

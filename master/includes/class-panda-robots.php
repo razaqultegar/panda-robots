@@ -146,6 +146,7 @@ if (!class_exists('Panda_Robots')) :
 					get_option('admin_email'),
 					get_option('conf_phone'),
 				);
+
 				panda_logs('Konfigurasi berhasil diperbarui', wp_json_encode($update));
 			endif;
 		?>
@@ -166,11 +167,11 @@ if (!class_exists('Panda_Robots')) :
 				</div>
 				<div class="form-field">
 					<label for="blogname">Nama Desa</label>
-					<input type="text" id="blogname" name="blogname" value="<?php echo get_option('blogname'); ?>" size="40" />
+					<input type="text" id="blogname" name="blogname" value="<?php echo get_bloginfo('name'); ?>" size="40" />
 				</div>
 				<div class="form-field">
 					<label for="blogdescription">Kabupaten</label>
-					<input type="text" id="blogdescription" name="blogdescription" value="<?php echo get_option('blogdescription'); ?>" size="40" />
+					<input type="text" id="blogdescription" name="blogdescription" value="<?php echo get_bloginfo('description'); ?>" size="40" />
 				</div>
 				<div class="form-field">
 					<label for="conf-address">Alamat Lengkap</label>
@@ -179,7 +180,7 @@ if (!class_exists('Panda_Robots')) :
 				</div>
 				<div class="form-field">
 					<label for="new_admin_email">Alamat Surel</label>
-					<input type="email" id="new_admin_email" name="new_admin_email" value="<?php echo get_option('admin_email'); ?>" size="40" />
+					<input type="email" id="new_admin_email" name="new_admin_email" value="<?php echo get_bloginfo('admin_email'); ?>" size="40" />
 				</div>
 				<div class="form-field">
 					<label for="conf-phone">No. Telepon/WhatsApp</label>
@@ -258,8 +259,6 @@ if (!class_exists('Panda_Robots')) :
 		{
 			if (isset($_POST['logs_reset'])) {
 				delete_option('panda_logs');
-
-				echo '<div class="updated notice notice-success is-dismissible" style="padding-top: 10px; padding-bottom: 10px;"><strong>Robot Panda :</strong> Log berhasil dihapus</div>';
 			}
 
 			panda_display_logs();
