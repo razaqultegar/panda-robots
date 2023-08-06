@@ -24,8 +24,7 @@ if (defined('PANDA_PATH')) {
 }
 
 // Define Paths - Includes trailing slash
-define('PANDA_PATH', plugin_dir_path(__FILE__));
-define('PANDA_URL', panda_get_url());
+define('PANDA_PATH', get_stylesheet_directory() . '/master/');
 
 // Load required dependencies
 if (file_exists(PANDA_PATH . 'includes')) {
@@ -39,26 +38,6 @@ if (file_exists(PANDA_PATH . 'addons')) {
     foreach (glob(PANDA_PATH . 'addons/*.php') as $addon) {
         require_once $addon;
     }
-}
-
-/**
- * Gets the URL to Panda Master folder.
- *
- * Tests if standard WP function works first, then tries an alternate method.
- *
- * @return URL string
- **/
-function panda_get_url()
-{
-    $installer_slug = basename(dirname(__FILE__, 2));
-
-    if (strpos(__FILE__, get_stylesheet_directory()) !== false) {
-        $url = get_stylesheet_directory_uri() . '/master/';
-    } else {
-        $url = plugins_url() . '/' . $installer_slug . '/master/';
-    }
-
-    return $url;
 }
 
 // Load Panda Robot menu

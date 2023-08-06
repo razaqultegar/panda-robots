@@ -24,9 +24,6 @@ function panda_notices()
             <h2>Terima kasih telah menggunakan Panda SID, Anda hebat! 🐼</h2>
             <p>Silahkan lakukan pengaturan awal melalui <a href="admin.php?page=panda_robots">Robot Panda</a>.</p>
         </div>
-        <button type="button" class="notice-dismiss">
-            <span class="screen-reader-text">Tutup pemberitahuan ini.</span>
-        </button>
     </div>
     ';
 }

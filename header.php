@@ -17,7 +17,6 @@
 
         $template_directory_uri = get_template_directory_uri();
         ?>
-        <title><?php echo get_option('conf_alias') . ' ' . get_option('blogname'); ?> | <?php echo 'Kab. ' . get_option('blogdescription'); ?></title>
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
         <script type="text/javascript">
             document.documentElement.className = 'js';
