@@ -28,10 +28,6 @@
 
 5. The theme can now be activated from the administrator. Select the `Appearance` tab, then open the theme catalog, find the theme, and click the `Activate link`.
 
-## 🤝 Contributing
-
-We welcome all contributions. You can submit any ideas as pull requests or as issues, have a good time! :)
-
 ## 📃 License
 
 The project is released under the GNU General Public License v2.0, see the [LICENCE](https://github.com/seatonjiang/kratos/blob/main/LICENSE) file for details.
