@@ -59,6 +59,7 @@ if (!class_exists('Panda_Robots')) :
 		public function load_panda_robots_style()
 		{
 			wp_enqueue_style('wp-jquery-ui-dialog');
+			wp_enqueue_style('wp-color-picker');
 			wp_register_style(
 				'panda_robots_css',
 				get_stylesheet_directory_uri() . '/master/assets/css/panda_robots.css',
@@ -70,8 +71,7 @@ if (!class_exists('Panda_Robots')) :
 			wp_enqueue_script('jquery-ui-tabs');
 			wp_enqueue_script('jquery-ui-dialog');
 			wp_enqueue_script('panda', get_stylesheet_directory_uri() . '/master/assets/js/panda_robots.js', array('jquery'), wp_get_theme()->get('Version'), true);
-
-			wp_enqueue_script('panda_panel_uploader', get_stylesheet_directory_uri() . '/master/assets/js/custom_uploader.js', array('jquery', 'media-upload', 'thickbox'), wp_get_theme()->get('Version'));
+			wp_enqueue_script('panda_panel_uploader', get_stylesheet_directory_uri() . '/master/assets/js/custom_uploader.js', array('jquery', 'media-upload', 'thickbox', 'wp-color-picker'), wp_get_theme()->get('Version'));
 			wp_enqueue_media();
 			wp_localize_script('panda_panel_uploader', 'panda_uploader', array(
 				'media_window_title' => 'Pilih Gambar',
@@ -131,6 +131,8 @@ if (!class_exists('Panda_Robots')) :
 		private function tab_configurations()
 		{
 			if (isset($_POST['conf_submit'])) :
+				et_update_option('divi_logo', trim($_POST['divi_logo']));
+				update_option('primary_color', trim($_POST['primary_color']));
 				update_option('conf_alias', trim($_POST['conf_alias']));
 				update_option('blogname', trim($_POST['blogname']));
 				update_option('blogdescription', trim($_POST['blogdescription']));
@@ -139,6 +141,8 @@ if (!class_exists('Panda_Robots')) :
 				update_option('conf_phone', trim($_POST['conf_phone']));
 
 				$update = array(
+					et_get_option('divi_logo'),
+					get_option('primary_color'),
 					get_option('conf_alias'),
 					get_option('blogname'),
 					get_option('blogdescription'),
@@ -154,11 +158,16 @@ if (!class_exists('Panda_Robots')) :
 			<hr>
 			<form action="" method="post" class="form-wrap">
 				<div class="form-field">
-					<label for="conf-logo">Logo</label>
+					<label for="divi_logo">Logo</label>
 					<input id="divi_logo" class="panda-upload-field" type="text" size="40" name="divi_logo" value="<?php echo et_get_option('divi_logo'); ?>" />
 					<div class="panda-upload-buttons">
 						<input class="panda-upload-image-button button button-primary" type="button" data-button_text="Atur sebagai Logo" value="Unggah" />
 					</div>
+				</div>
+				<div class="form-field">
+					<label for="primary_color">Warna Utama</label>
+					<input type="text" id="primary_color" name="primary_color" value="<?php echo get_option('primary_color'); ?>" data-default-color="<?php echo get_option('primary_color'); ?>" aria-describedby="primary-color-description" />
+					<p id="primary-color-description">Warna Utama adalah warna utama yang digunakan untuk situs Anda.</p>
 				</div>
 				<div class="form-field">
 					<label for="conf-alias">Nama Alias</label>

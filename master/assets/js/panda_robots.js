@@ -27,4 +27,35 @@ jQuery(document).ready(function ($) {
     $(this).blur();
     return false;
   });
+
+  // Init color picker
+  $("#primary_color").wpColorPicker({
+    change: function (event, ui) {
+      $(".color-alpha").css("backgroundColor", ui.color.toString());
+    },
+  });
+  $(".wp-color-result").attr("title", "Pilih Warna");
+  $(".wp-color-result").attr("data-current", "Warna Sekarang");
+
+  var currentColor = $("#primary_color").data("default-color");
+  function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : null;
+  }
+
+  $(".wp-color-result-text").after(
+    '<span class="color-alpha" style="width: 100%;height: 100%;position: absolute;top: 0px;left: 0px;border-top-left-radius: 3px;border-bottom-left-radius: 3px;background: rgb(' +
+      hexToRgb(currentColor).r +
+      ", " +
+      hexToRgb(currentColor).g +
+      ", " +
+      hexToRgb(currentColor).b +
+      ');"></span>'
+  );
 });
