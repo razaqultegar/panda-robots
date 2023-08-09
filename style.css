@@ -47,6 +47,31 @@ hr.hr-primary {
   background-size: 100% 2px;
 }
 
+/* Global - Keyframes */
+@-webkit-keyframes fade-in-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Top Header */
 #top-header .container {
   font-weight: 500;
@@ -564,6 +589,32 @@ ol.commentlist {
 
 .comment-body {
   margin-bottom: 40px !important;
+}
+
+/* Divi Layout - Member Card */
+.member-card:hover .member-bio {
+  opacity: 1;
+  animation: fade-in-bottom 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.member-card:hover .member-social-media-follow {
+  opacity: 1;
+  animation: fade-in-bottom 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.member-card:hover .member-about-button {
+  opacity: 1;
+  animation: fade-in-bottom 0.9s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+/* Divi Layout - FAQ */
+.faq-content {
+  display: none;
+}
+
+.active-faq-content {
+  display: block;
+  animation: fade-in-bottom 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 /* Footer */
