@@ -12,35 +12,15 @@
  **/
 
 if (!defined('ABSPATH')) {
-	exit;
+    exit;
 }
-
-// New Admin Column
-function pd_create_shortcode_column($columns)
-{
-    $columns['pd_shortcode_id'] = 'Module Shortcode';
-    return $columns;
-}
-add_filter('manage_et_pb_layout_posts_columns', 'pd_create_shortcode_column', 5);
-
-// Display Shortcode
-function pd_shortcode_content($column, $id)
-{
-    if ('pd_shortcode_id' == $column) {
-?>
-        <p>[sj_layout id="<?php echo $id ?>"]</p>
-<?php
-    }
-}
-add_action('manage_et_pb_layout_posts_custom_column', 'pd_shortcode_content', 5, 2);
 
 // Create New Shortcode
-function pd_shortcode_mod($pd_mod_id)
+function pd_primary_color()
 {
-    extract(shortcode_atts(array('id' => '*'), $pd_mod_id));
-    return do_shortcode('[et_pb_section global_module="' . $id . '"][/et_pb_section]');
+    return get_option('primary_color');
 }
-add_shortcode('pd_layout', 'pd_shortcode_mod');
+add_shortcode('primary_color', 'pd_primary_color');
 
 function pd_conf_alias()
 {

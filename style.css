@@ -73,6 +73,10 @@ hr.hr-primary {
 }
 
 /* Top Header */
+#top-header {
+  background-color: #2ea3f2;
+}
+
 #top-header .container {
   font-weight: 500;
   padding-top: 0;
@@ -121,9 +125,18 @@ hr.hr-primary {
 
 #et-info-phone:before,
 #et-info-email:before {
+  color: #ffffff;
   font-size: 18px;
   position: unset;
   margin-right: unset;
+}
+
+#et-info-phone:before {
+  content: "\e090";
+}
+
+#et-info-email:before {
+  content: "\e076";
 }
 
 .panda-blurb-container {
