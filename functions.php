@@ -4,10 +4,23 @@ if (file_exists(get_stylesheet_directory() . '/master/panda-master.php') && !def
     include_once(get_stylesheet_directory() . '/master/panda-master.php');
 }
 
-// Checking if Panda SID themes is activated
+// Initial Panda SID themes
 function panda_setup()
 {
+    // Update Divi Options
+    et_update_option('divi_fixed_nav', 'off');
+    et_update_option('divi_show_twitter_icon', 'off');
+    et_update_option('divi_date_format', 'j F Y');
+    et_update_option('et_pb_product_tour_global', 'off');
+    et_update_option('et_enable_bfb', 'off');
+    et_update_option('et_enable_classic_editor', 'on');
+    et_update_option('heading_font', 'Montserrat');
+    et_update_option('body_font', 'Montserrat');
+
+    // Show Admin Notices
     add_action('admin_notices', 'panda_notices');
+
+    // Add Logs
     panda_logs('Inisialisasi tema Panda SID telah berhasil', 'Sistem Operasi: ' . PHP_OS . ', Versi PHP: ' . PHP_VERSION);
 }
 add_action('after_switch_theme', 'panda_setup');
