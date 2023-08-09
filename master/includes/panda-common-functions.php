@@ -62,7 +62,7 @@ function panda_display_logs()
 {
     $panda_log = get_option('panda_logs');
     echo '
-    <table class="widefat striped logs-table">
+    <table class="widefat fixed striped logs-table">
         <thead>
             <tr>
                 <td>Waktu</td>
@@ -81,7 +81,7 @@ function panda_display_logs()
         ';
     } else {
         $panda_log = json_decode($panda_log);
-        array_multisort(array_column($panda_log, 'time'), SORT_ASC, $panda_log);
+        array_multisort(array_column($panda_log, 'time'), SORT_DESC, $panda_log);
 
         if (is_array($panda_log)) {
             foreach ($panda_log as $log_entry) {
