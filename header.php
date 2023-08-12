@@ -17,7 +17,7 @@
 
         $template_directory_uri = get_template_directory_uri();
         ?>
-        <title><?php wp_title('-', true, 'right'); ?><?php echo get_option('conf_alias') . ' ' . get_bloginfo('name') . ' | Kab. ' . get_bloginfo('description'); ?></title>
+        <title><?php wp_title('-', true, 'right'); ?><?php echo (!empty(panda_get_option('alias')) ? panda_get_option('alias') : 'Desa') . ' ' . get_bloginfo('name') . ' | Kab. ' . get_bloginfo('description'); ?></title>
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
         <script type="text/javascript">
             document.documentElement.className = 'js';
@@ -42,7 +42,7 @@
             <div id="top-header">
                 <div class="flex container clearfix">
                     <div id="et-info">
-                        <?php if (!empty(get_option('conf_phone'))) : ?>
+                        <?php if (!empty(panda_get_option('phone'))) : ?>
                         <div class="panda-blurb">
                             <div class="panda-blurb-content">
                                 <div class="panda-blurb-image">
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="panda-blurb-container">
                                     <h4>
-                                        <span><?php echo get_option('conf_phone'); ?></span>
+                                        <span><?php echo panda_get_option('phone'); ?></span>
                                     </h4>
                                 </div>
                             </div>
