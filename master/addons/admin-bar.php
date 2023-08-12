@@ -3,7 +3,7 @@
 /**
  * Panda Admin Bar
  *
- * This class builds the modify WP Admin bar.
+ * This functions builds for the modify WP Admin bar.
  *
  * @package    panda-addons
  * @author     Puskomedia Indonesia <dev@puskomedia.id>
@@ -20,7 +20,7 @@ function panda_site_menu()
 {
     global $wp_admin_bar;
 
-    $blogname = get_option('conf_alias') . ' ' . get_bloginfo('name');
+    $blogname = (!empty(panda_get_option('alias')) ? panda_get_option('alias') : 'Desa') . ' ' . get_bloginfo('name');
 
     if (!$blogname) {
         $blogname = preg_replace('#^(https?://)?(www.)?#', '', get_home_url());

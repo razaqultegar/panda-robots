@@ -23,6 +23,9 @@ if (defined('PANDA_PATH')) {
     return;
 }
 
+global $panda_store_options_in_one_row;
+$panda_store_options_in_one_row = true;
+
 // Define Paths - Includes trailing slash
 define('PANDA_PATH', get_stylesheet_directory() . '/master/');
 

@@ -54,6 +54,27 @@ function panda_logs($log_trigger, $log_data = '')
 }
 
 /**
+ * Log errors that cause a Panda Import process to die
+ * Then display error message to user
+ *
+ * @param string $error_message Optional. The error message.
+ * @param mixed  $error_data Optional. Provides extra data about the error.
+ **/
+function panda_order($error_message = '', $error_data = '')
+{
+    panda_logs('order', $error_message);
+
+    if (is_wp_error($error_data)) {
+        panda_logs('Error Kode', $error_data->errors);
+        panda_logs('Error Data', $error_data->error_data);
+    } else {
+        panda_logs('Error Kode: ', $error_data);
+    }
+
+    wp_die(esc_attr($error_message));
+}
+
+/**
  * Display Panda Robots Log in HTML table
  *
  * * @return void
@@ -114,6 +135,24 @@ function panda_display_logs()
         echo '<p class="submit"><input type="submit" class="button button-primary button-danger" name="logs_reset" value="Hapus Log"></p>';
         echo '</form>';
     }
+}
+
+// Check if Divi Theme or Plugin is active
+function panda_is_divi()
+{
+    $is_divi = false;
+
+    if (function_exists('et_setup_theme')) {
+        $is_divi = true;
+    }
+    if (defined('ET_BUILDER_THEME')) {
+        $is_divi = true;
+    }
+    if (defined('ET_BUILDER_PLUGIN_DIR')) {
+        $is_divi = true;
+    }
+
+    return $is_divi;
 }
 
 // Init Panda Feeds Options.

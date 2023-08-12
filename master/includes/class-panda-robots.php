@@ -130,25 +130,26 @@ if (!class_exists('Panda_Robots')) :
 		 */
 		private function tab_configurations()
 		{
+			// Handle submit button
 			if (isset($_POST['conf_submit'])) :
 				et_update_option('divi_logo', trim($_POST['divi_logo']));
-				update_option('primary_color', trim($_POST['primary_color']));
-				update_option('conf_alias', trim($_POST['conf_alias']));
+				panda_update_option('accent_color', trim($_POST['accent_color']));
+				panda_update_option('alias', trim($_POST['alias']));
 				update_option('blogname', trim($_POST['blogname']));
 				update_option('blogdescription', trim($_POST['blogdescription']));
-				update_option('conf_address', trim($_POST['conf_address']));
-				update_option('admin_email', trim($_POST['new_admin_email']));
-				update_option('conf_phone', trim($_POST['conf_phone']));
+				panda_update_option('address', trim($_POST['address']));
+				update_option('admin_email', trim($_POST['admin_email']));
+				panda_update_option('phone', trim($_POST['phone']));
 
 				$update = array(
 					et_get_option('divi_logo'),
-					get_option('primary_color'),
-					get_option('conf_alias'),
+					panda_get_option('accent_color'),
+					panda_get_option('alias'),
 					get_option('blogname'),
 					get_option('blogdescription'),
-					get_option('conf_address'),
+					panda_get_option('address'),
 					get_option('admin_email'),
-					get_option('conf_phone'),
+					panda_get_option('phone'),
 				);
 
 				panda_logs('Konfigurasi berhasil diperbarui', wp_json_encode($update));
@@ -165,14 +166,14 @@ if (!class_exists('Panda_Robots')) :
 					</div>
 				</div>
 				<div class="form-field">
-					<label for="primary_color">Warna Utama</label>
-					<input type="text" id="primary_color" name="primary_color" value="<?php echo get_option('primary_color'); ?>" data-default-color="<?php echo get_option('primary_color'); ?>" aria-describedby="primary-color-description" />
-					<p id="primary-color-description">Warna Utama adalah warna utama yang digunakan untuk situs Anda.</p>
+					<label for="accent_color">Warna Utama</label>
+					<input type="text" id="accent_color" name="accent_color" value="<?php echo (!empty(panda_get_option('accent_color')) ? panda_get_option('accent_color') : '#3a9bd5'); ?>" data-default-color="<?php echo (!empty(panda_get_option('accent_color')) ? panda_get_option('accent_color') : '#3a9bd5'); ?>" aria-describedby="accent-color-description" />
+					<p id="accent-color-description">Warna Utama adalah warna utama yang digunakan untuk situs Anda.</p>
 				</div>
 				<div class="form-field">
-					<label for="conf-alias">Nama Alias</label>
-					<input type="text" id="conf-alias" name="conf_alias" value="<?php echo get_option('conf_alias'); ?>" size="40" aria-describedby="conf-alias-description" />
-					<p id="conf-alias-description">Nama Alias adalah sebutan untuk nama desa di wilayah masing-masing.</p>
+					<label for="alias">Nama Alias</label>
+					<input type="text" id="alias" name="alias" value="<?php echo (!empty(panda_get_option('alias')) ? panda_get_option('alias') : 'Desa'); ?>" size="40" aria-describedby="alias-description" />
+					<p id="alias-description">Nama Alias adalah sebutan untuk nama desa di wilayah masing-masing.</p>
 				</div>
 				<div class="form-field">
 					<label for="blogname">Nama Desa</label>
@@ -183,18 +184,18 @@ if (!class_exists('Panda_Robots')) :
 					<input type="text" id="blogdescription" name="blogdescription" value="<?php echo get_bloginfo('description'); ?>" size="40" />
 				</div>
 				<div class="form-field">
-					<label for="conf-address">Alamat Lengkap</label>
-					<textarea id="conf-address" name="conf_address" rows="5" cols="40" aria-describedby="name-address"><?php echo get_option('conf_address'); ?></textarea>
-					<p id="name-address">Berisi alamat jalan, nomor kantor, desa, kecamatan, kabupaten, provinsi, dan kode pos.</p>
+					<label for="address">Alamat Lengkap</label>
+					<textarea id="address" name="address" rows="5" cols="40" aria-describedby="address-description"><?php echo panda_get_option('address'); ?></textarea>
+					<p id="address-description">Berisi alamat jalan, nomor kantor, desa, kecamatan, kabupaten, provinsi, dan kode pos.</p>
 				</div>
 				<div class="form-field">
-					<label for="new_admin_email">Alamat Surel</label>
-					<input type="email" id="new_admin_email" name="new_admin_email" value="<?php echo get_bloginfo('admin_email'); ?>" size="40" />
+					<label for="admin_email">Alamat Surel</label>
+					<input type="email" id="admin_email" name="admin_email" value="<?php echo get_bloginfo('admin_email'); ?>" size="40" />
 				</div>
 				<div class="form-field">
-					<label for="conf-phone">No. Telepon/WhatsApp</label>
-					<input type="text" id="conf-phone" name="conf_phone" value="<?php echo get_option('conf_phone'); ?>" size="40" aria-describedby="name-phone" />
-					<p id="name-phone">Jika berisi nomor whatsap awali dengan kode negara (62).</p>
+					<label for="phone">No. Telepon/WhatsApp</label>
+					<input type="text" id="phone" name="phone" value="<?php echo (!empty(panda_get_option('phone')) ? panda_get_option('phone') : '+1 234 567 8'); ?>" size="40" aria-describedby="phone-description" />
+					<p id="phone-description">Jika berisi nomor whatsap awali dengan kode negara (62).</p>
 				</div>
 				<p class="submit">
 					<input type="submit" class="button button-primary" name="conf_submit" value="Simpan Perubahan" />
@@ -210,6 +211,12 @@ if (!class_exists('Panda_Robots')) :
 		 */
 		private function tab_imports()
 		{
+			// Handle submit button
+			if (isset($_POST['imp_submit'])) {
+				update_option('panda_status', 'Importing');
+
+				return;
+			}
 		?>
 			<p>Form berikut merinci data apa saja yang harus diimporkan untuk website desa Anda sehingga akan menampilkan data website sama persis seperti website contoh Panda. Silahkan centang! Jika ada sesuatu yang tidak jelas, <a href="javascript:void(0)" class="change-tab" data-tab="3">hubungi bantuan</a> sebelum mengimpor data apa pun. Lebih baik bertanya daripada tersesat!</p>
 			<hr>
@@ -283,7 +290,6 @@ if (!class_exists('Panda_Robots')) :
 		?>
 			<p>The following table details what data will be deleted (reset or destroyed) when a selected reset tool is run. Please read it! If something is not clear <a href="#" class="change-tab" data-tab="4">contact support</a> before running any tools. It\'s better to ask than to be sorry!</p>
 			<hr>
-
 		<?php
 		}
 
@@ -325,7 +331,7 @@ if (!class_exists('Panda_Robots')) :
 					</a>
 				</p>
 			</div>
-<?php
+		<?php
 		}
 	}
 endif;

@@ -29,7 +29,7 @@ jQuery(document).ready(function ($) {
   });
 
   // Init color picker
-  $("#primary_color").wpColorPicker({
+  $("#accent_color").wpColorPicker({
     change: function (event, ui) {
       $(".color-alpha").css("backgroundColor", ui.color.toString());
     },
@@ -37,7 +37,7 @@ jQuery(document).ready(function ($) {
   $(".wp-color-result").attr("title", "Pilih Warna");
   $(".wp-color-result").attr("data-current", "Warna Sekarang");
 
-  var currentColor = $("#primary_color").data("default-color");
+  var currentColor = $("#accent_color").data("default-color");
   function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
