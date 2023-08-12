@@ -654,8 +654,11 @@ ol.commentlist {
   display: block;
 }
 
-#menu-menu-footer {
+#et-footer-nav {
   float: right;
+}
+
+#et-footer-nav ul.bottom-nav {
   padding: 0;
 }
 

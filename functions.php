@@ -4,7 +4,7 @@ if (file_exists(get_stylesheet_directory() . '/master/panda-master.php') && !def
     include_once(get_stylesheet_directory() . '/master/panda-master.php');
 }
 
-// Initial Panda SID themes
+// Initial Panda SID Themes
 function panda_setup()
 {
     // Update Divi Options
@@ -25,6 +25,14 @@ function panda_setup()
 }
 add_action('after_switch_theme', 'panda_setup');
 
+// Gettings CSS and Scripts
+function panda_enqueue_scripts()
+{
+    wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
+    wp_enqueue_script('panda-custom-script', get_stylesheet_directory_uri() . '/scripts.js', array('jquery'), wp_get_theme()->get('Version'), true);
+}
+add_action('wp_enqueue_scripts', 'panda_enqueue_scripts');
+
 // Custom Notices
 function panda_notices()
 {
@@ -40,11 +48,3 @@ function panda_notices()
     </div>
     ';
 }
-
-// Gettings CSS and Scripts
-function panda_enqueue_scripts()
-{
-    wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
-    wp_enqueue_script('panda-custom-script', get_stylesheet_directory_uri() . '/scripts.js', array('jquery'), wp_get_theme()->get('Version'), true);
-}
-add_action('wp_enqueue_scripts', 'panda_enqueue_scripts');
