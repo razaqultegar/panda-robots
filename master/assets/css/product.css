@@ -1,0 +1,270 @@
+.panda_options_panel fieldset.form-field,
+.panda_options_panel p.form-field {
+  color: #555;
+  font-size: 12px;
+  line-height: 24px;
+  margin: 9px 0px;
+}
+
+.panda_options_panel p.form-field {
+  padding: 5px 0px 5px 162px;
+}
+
+.panda_options_panel label,
+.panda_options_panel legend {
+  float: left;
+  width: 150px;
+  padding: 0px;
+  margin: 0px 0px 0px -160px;
+}
+
+.panda_options_panel input {
+  width: 99.7%;
+}
+
+.panda_options_panel .options-group {
+  border-top: 1px solid #eee;
+}
+
+.panda_options_panel .options-group:first-of-type {
+  border-top: unset;
+}
+
+.panda_options_panel fieldset {
+  padding: 5px 20px 5px 162px;
+  margin-bottom: 0px;
+}
+
+.panda_options_panel fieldset ul {
+  width: 50%;
+  padding: 0px;
+}
+
+.panda_options_panel fieldset ul li {
+  width: auto;
+  margin: 0px;
+}
+
+.panda_options_panel fieldset label {
+  float: none;
+}
+
+.panda_options_panel .input-radios {
+  display: block;
+  float: left;
+  margin: 0px;
+}
+
+.panda_options_panel .input-radios li {
+  display: block;
+  padding: 0px 0px 10px;
+}
+
+.panda_options_panel .input-radios li:last-of-type {
+  padding-bottom: 0px;
+}
+
+.panda_options_panel .input-radios label {
+  margin-left: 0px;
+}
+
+.panda_options_panel .input-radios input {
+  width: unset;
+}
+
+#panda-product-images .inside {
+  margin: 0;
+  padding: 0;
+}
+
+#panda-product-images .inside .add_product_images {
+  padding: 0 12px 12px;
+}
+
+#panda-product-images .inside #product_images_container {
+  padding: 0 0 0 9px;
+}
+
+#panda-product-images .inside #product_images_container ul {
+  margin: 0;
+  padding: 0;
+}
+
+#panda-product-images .inside #product_images_container ul::after,
+#panda-product-images .inside #product_images_container ul::before {
+  content: " ";
+  display: table;
+}
+
+#panda-product-images .inside #product_images_container ul::after {
+  clear: both;
+}
+
+#panda-product-images .inside #product_images_container ul li.add,
+#panda-product-images .inside #product_images_container ul li.image,
+#panda-product-images
+  .inside
+  #product_images_container
+  ul
+  li.panda-metabox-sortable-placeholder {
+  width: 80px;
+  float: left;
+  cursor: move;
+  border: 1px solid #d5d5d5;
+  margin: 9px 9px 0 0;
+  background: #f7f7f7;
+  border-radius: 2px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+#panda-product-images .inside #product_images_container ul li.add img,
+#panda-product-images .inside #product_images_container ul li.image img,
+#panda-product-images
+  .inside
+  #product_images_container
+  ul
+  li.panda-metabox-sortable-placeholder
+  img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#panda-product-images
+  .inside
+  #product_images_container
+  ul
+  li.panda-metabox-sortable-placeholder {
+  border: 3px dashed #ddd;
+  position: relative;
+}
+
+#panda-product-images
+  .inside
+  #product_images_container
+  ul
+  li.panda-metabox-sortable-placeholder::after {
+  font-family: Dashicons;
+  speak: never;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  text-indent: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  content: "\f161";
+  font-size: 2.618em;
+  line-height: 72px;
+  color: #ddd;
+}
+
+#panda-product-images .inside #product_images_container ul ul.actions {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 2px;
+  display: none;
+}
+
+#panda-product-images .inside #product_images_container ul ul.actions li {
+  float: right;
+  margin: 0 0 0 2px;
+}
+
+#panda-product-images
+  .inside
+  #product_images_container
+  ul
+  ul.actions
+  li
+  a {
+  width: 1em;
+  height: 1em;
+  margin: 0;
+  height: 0;
+  display: block;
+  overflow: hidden;
+}
+
+#panda-product-images
+  .inside
+  #product_images_container
+  ul
+  ul.actions
+  li
+  a.tips {
+  cursor: pointer;
+}
+
+#panda-product-images
+  .inside
+  #product_images_container
+  ul
+  ul.actions
+  li
+  a.delete {
+  display: block;
+  text-indent: -9999px;
+  position: relative;
+  height: 1em;
+  width: 1em;
+  font-size: 1.4em;
+}
+
+#panda-product-images
+  .inside
+  #product_images_container
+  ul
+  ul.actions
+  li
+  a.delete::before {
+  font-family: Dashicons;
+  speak: never;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  text-indent: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  content: "\f153";
+  color: #999;
+  background: #fff;
+  border-radius: 50%;
+  height: 1em;
+  width: 1em;
+  line-height: 1em;
+}
+
+#panda-product-images
+  .inside
+  #product_images_container
+  ul
+  ul.actions
+  li
+  a.delete:hover::before {
+  color: #a00;
+}
+
+#panda-product-images
+  .inside
+  #product_images_container
+  ul
+  li:hover
+  ul.actions {
+  display: block;
+}
