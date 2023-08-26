@@ -1,9 +1,5 @@
 <?php
 
-if (file_exists(get_stylesheet_directory() . '/master/panda-master.php') && !defined('PANDA_PATH')) {
-    include_once(get_stylesheet_directory() . '/master/panda-master.php');
-}
-
 // Initial Panda SID Themes
 function panda_setup()
 {
@@ -16,6 +12,12 @@ function panda_setup()
     et_update_option('et_enable_classic_editor', 'on');
     et_update_option('heading_font', 'Montserrat');
     et_update_option('body_font', 'Montserrat');
+
+    // WordPress
+    add_filter('gutenberg_use_widgets_block_editor', '__return_false');
+    add_filter('use_widgets_block_editor', '__return_false');
+    add_filter('use_block_editor_for_post', '__return_false');
+    add_filter('use_widgets_block_editor', '__return_false');
 
     // Add Logs
     panda_logs('Inisialisasi tema Panda SID telah berhasil', 'Sistem Operasi: ' . PHP_OS . ', Versi PHP: ' . PHP_VERSION);
@@ -36,6 +38,10 @@ function panda_enqueue_scripts()
 {
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
     wp_enqueue_script('panda-custom-script', get_stylesheet_directory_uri() . '/scripts.js', array('jquery'), wp_get_theme()->get('Version'), true);
+
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
+    wp_dequeue_style('global-styles');
 }
 add_action('wp_enqueue_scripts', 'panda_enqueue_scripts');
 
@@ -70,3 +76,23 @@ function panda_accent_color()
     </style>';
 }
 add_action('wp_head', 'panda_accent_color');
+
+global $panda_store_options_in_one_row;
+$panda_store_options_in_one_row = true;
+$panda_path = get_stylesheet_directory();
+
+// Load required dependencies
+require_once $panda_path . '/includes/class-panda-imports.php';
+require_once $panda_path . '/includes/class-panda-robots.php';
+require_once $panda_path . '/includes/class-tgm-plugin-activation.php';
+require_once $panda_path . '/includes/panda-common-functions.php';
+
+// Load Panda addons
+require_once $panda_path . '/addons/admin-bar.php';
+require_once $panda_path . '/addons/meta-boxes.php';
+require_once $panda_path . '/addons/plugins.php';
+require_once $panda_path . '/addons/products.php';
+require_once $panda_path . '/addons/shortcodes.php';
+
+// Load Panda Robot menu
+$panda_robots = new Panda_Robots();

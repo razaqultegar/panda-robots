@@ -19,7 +19,7 @@
  */
 
 // Include the TGM_Plugin_Activation class
-require_once get_stylesheet_directory() . '/master/includes/class-tgm-plugin-activation.php';
+require_once get_stylesheet_directory() . '/includes/class-tgm-plugin-activation.php';
 
 /**
  * Register the required plugins for this theme.

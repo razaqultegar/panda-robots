@@ -1,0 +1,18 @@
+/* Fonts */
+@font-face {
+  font-family: Panda;
+  font-display: swap;
+  src: url(../fonts/panda.ttf);
+  src: url(../fonts/panda.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Menu Icon */
+li.toplevel_page_panda_robots div.wp-menu-image:before {
+  content: "\0061";
+  font-family: Panda;
+  font-size: 25px;
+  width: 25px;
+  margin-top: -5px;
+}

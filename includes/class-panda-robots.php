@@ -39,16 +39,19 @@ if (!class_exists('Panda_Robots')) :
 			$screen       = get_current_screen();
 			$screen_id    = $screen ? $screen->id : '';
 
+			wp_register_style('panda_admin_styles', get_stylesheet_directory_uri() . '/assets/css/admin.css', array(), $version);
+			wp_enqueue_style('panda_admin_styles');
+
 			if (in_array($screen_id, array('toplevel_page_panda_robots'), true)) {
-				wp_register_style('panda_admin_styles', get_stylesheet_directory_uri() . '/master/assets/css/admin.css', array(), $version);
+				wp_register_style('panda_admin_menu_styles', get_stylesheet_directory_uri() . '/assets/css/menu.css', array(), $version);
 
 				wp_enqueue_style('wp-jquery-ui-dialog');
 				wp_enqueue_style('wp-color-picker');
-				wp_enqueue_style('panda_admin_styles');
+				wp_enqueue_style('panda_admin_menu_styles');
 			};
 
 			if (in_array($screen_id, array('product', 'edit-product'), true)) {
-				wp_register_style('panda_product_styles', get_stylesheet_directory_uri() . '/master/assets/css/product.css', array(), $version);
+				wp_register_style('panda_product_styles', get_stylesheet_directory_uri() . '/assets/css/product.css', array(), $version);
 				wp_enqueue_style('panda_product_styles');
 			};
 		}
@@ -65,8 +68,8 @@ if (!class_exists('Panda_Robots')) :
 			if (in_array($screen_id, array('toplevel_page_panda_robots'), true)) {
 				wp_enqueue_media();
 
-				wp_enqueue_script('panda', get_stylesheet_directory_uri() . '/master/assets/js/admin.js', array('jquery'), $version, true);
-				wp_enqueue_script('panda_panel_uploader', get_stylesheet_directory_uri() . '/master/assets/js/custom_uploader.js', array('jquery', 'media-upload', 'thickbox', 'wp-color-picker'), $version);
+				wp_enqueue_script('panda_admin_menu', get_stylesheet_directory_uri() . '/assets/js/menu.js', array('jquery'), $version, true);
+				wp_enqueue_script('panda_panel_uploader', get_stylesheet_directory_uri() . '/assets/js/custom_uploader.js', array('jquery', 'media-upload', 'thickbox', 'wp-color-picker'), $version);
 
 				wp_enqueue_script('jquery-ui-tabs');
 				wp_enqueue_script('jquery-ui-dialog');
@@ -79,7 +82,7 @@ if (!class_exists('Panda_Robots')) :
 			if (in_array($screen_id, array('product', 'edit-product'))) {
 				wp_enqueue_media();
 
-				wp_register_script('panda-product', get_stylesheet_directory_uri() . '/master/assets/js/product.js', array('media-models'), $version);
+				wp_register_script('panda-product', get_stylesheet_directory_uri() . '/assets/js/product.js', array('media-models'), $version);
 				wp_enqueue_script('panda-product');
 			}
 		}
@@ -104,7 +107,7 @@ if (!class_exists('Panda_Robots')) :
 ?>
 			<div class="wrap">
 				<header>
-					<img id="logo-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/master/assets/images/panda.png" title="Robot Panda" alt="Robot Panda" />
+					<img id="logo-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/panda.png" title="Robot Panda" alt="Robot Panda" />
 				</header>
 				<div class="col-left">
 					<div id="panda-tabs" class="ui-tabs" style="display:none">
