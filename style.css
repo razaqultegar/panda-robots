@@ -335,6 +335,7 @@ span.site-description {
   opacity: unset;
 }
 
+#top-menu-nav #top-menu li.current-menu-item a:before,
 #top-menu-nav #top-menu li li a:hover:before {
   background-color: #3a9bd5 !important;
   width: 4px;
@@ -426,7 +427,7 @@ span.site-description {
 }
 
 .panda-top-button .et_pb_button {
-  background-image: linear-gradient(151deg, #3a9bd5 38%, #2ea3f2 100%);
+  background-color: #3a9bd5;
   border-width: 0px;
   border-radius: 5px;
   box-shadow: 0px 9px 18px -9px rgba(0, 0, 0, 0.3);
@@ -465,6 +466,28 @@ span.site-description {
 
 .inline-buttons-row .et_pb_button_module_wrapper {
   display: inline-block;
+}
+
+.feature .et_pb_animation_off {
+  background: #3a9bd5;
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.3s ease;
+}
+
+.feature:hover .et_pb_animation_off {
+  box-shadow: 35px -15px 0px #3a9bd51f, -25px 15px 0px #3a9bd51f;
+  transform: scale(1.2);
+}
+
+.molti-view-button {
+  opacity: 0;
+  animation: fade-out-bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.molti-column:hover .molti-view-button {
+  opacity: 1;
+  animation: fade-in-bottom 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 /* Page Content - Blog Grid */
@@ -602,6 +625,26 @@ ol.commentlist {
 
 .comment-body {
   margin-bottom: 40px !important;
+}
+
+/* Page Content - Contact */
+.panda-view-button {
+  opacity: 0;
+  animation: fade-out-bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.panda-column:hover .panda-view-button {
+  opacity: 1;
+  animation: fade-in-bottom 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+mark-shy-text {
+  background: #3a9bd51a !important;
+  border-radius: 100px;
+  color: #3a9bd5 !important;
+  font-weight: 700;
+  padding: 10px 25px;
+  margin-bottom: 10px;
 }
 
 /* Divi Layout - Member Card */
