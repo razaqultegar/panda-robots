@@ -1217,7 +1217,7 @@ if (!class_exists('TGM_Plugin_Activation')) {
                         $count          = count($plugin_group);
                         $linked_plugins = array_map(array('TGMPA_Utils', 'wrap_in_em'), $linked_plugins);
                         $last_plugin    = array_pop($linked_plugins); // Pop off last name to prep for readability.
-                        $imploded       = empty($linked_plugins) ? $last_plugin : (implode(', ', $linked_plugins) . ' ' . esc_html_x('and', 'plugin A *and* plugin B', 'tgmpa') . ' ' . $last_plugin);
+                        $imploded       = empty($linked_plugins) ? $last_plugin : (implode(', ', $linked_plugins) . ' ' . esc_html_x('dan', 'plugin A *and* plugin B', 'tgmpa') . ' ' . $last_plugin);
 
                         $rendered .= sprintf(
                             $line_template,
@@ -2458,7 +2458,7 @@ if (!class_exists('TGMPA_List_Table')) {
         protected function get_plugin_status_text($slug)
         {
             if (!$this->tgmpa->is_plugin_installed($slug)) {
-                return __('Not Installed', 'tgmpa');
+                return __('Tidak Terinstal', 'tgmpa');
             }
 
             if (!$this->tgmpa->is_plugin_active($slug)) {
