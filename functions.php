@@ -17,13 +17,19 @@ function panda_setup()
     et_update_option('heading_font', 'Montserrat');
     et_update_option('body_font', 'Montserrat');
 
-    // Show Admin Notices
-    add_action('admin_notices', 'panda_notices');
-
     // Add Logs
     panda_logs('Inisialisasi tema Panda SID telah berhasil', 'Sistem Operasi: ' . PHP_OS . ', Versi PHP: ' . PHP_VERSION);
 }
 add_action('after_switch_theme', 'panda_setup');
+
+// Remove Divi Project
+function panda_remove_project()
+{
+    unregister_post_type('project');
+    unregister_taxonomy('project_category');
+    unregister_taxonomy('project_tag');
+}
+add_action('init', 'panda_remove_project');
 
 // Gettings CSS and Scripts
 function panda_enqueue_scripts()
@@ -64,19 +70,3 @@ function panda_accent_color()
     </style>';
 }
 add_action('wp_head', 'panda_accent_color');
-
-// Custom Notices
-function panda_notices()
-{
-    echo '
-    <div class="notice notice-info panda-notice is-dismissible">
-        <span class="icon">
-            <img src="' . get_stylesheet_directory_uri() . '/master/assets/images/panda-icons.png" alt="Panda SID" width="250">
-        </span>
-        <div class="notice-content">
-            <h2>Terima kasih telah menggunakan Panda SID, Anda hebat! 🐼</h2>
-            <p>Silahkan lakukan pengaturan awal melalui <a href="admin.php?page=panda_robots">Robot Panda</a>.</p>
-        </div>
-    </div>
-    ';
-}
