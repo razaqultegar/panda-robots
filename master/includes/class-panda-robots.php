@@ -17,65 +17,85 @@ if (!defined('ABSPATH')) {
 }
 
 if (!class_exists('Panda_Robots')) :
-	// Panda Admin Menu & Pages
+	// Panda Admin Menu & Pages C;ass
 	class Panda_Robots
 	{
 		/**
-		 * $panda_menu_title - Menu Title
-		 * 
-		 * @var string 
-		 **/
-		public $panda_menu_title = 'Robot Panda';
-
-		/**
-		 * $panda_menu_slug - Menu Slug
-		 * 
-		 * @var string 
-		 **/
-		public $panda_menu_slug = 'panda_robots';
-
-		// Initializes Admin Menus
+		 * Hook in tabs.
+		 */
 		public function __construct()
 		{
-			add_action('admin_menu', array($this, 'admin_menu'), 8000);
-			add_action('admin_enqueue_scripts', array($this, 'load_panda_robots_style'));
+			add_action('admin_enqueue_scripts', array($this, 'admin_styles'));
+			add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
+			add_action('admin_menu', array($this, 'admin_menu'));
+		}
+
+		/**
+		 * Enqueue styles.
+		 */
+		public function admin_styles()
+		{
+			$version	  = wp_get_theme()->get('Version');
+			$screen       = get_current_screen();
+			$screen_id    = $screen ? $screen->id : '';
+
+			if (in_array($screen_id, array('toplevel_page_panda_robots'), true)) {
+				wp_register_style('panda_admin_styles', get_stylesheet_directory_uri() . '/master/assets/css/admin.css', array(), $version);
+
+				wp_enqueue_style('wp-jquery-ui-dialog');
+				wp_enqueue_style('wp-color-picker');
+				wp_enqueue_style('panda_admin_styles');
+			};
+
+			if (in_array($screen_id, array('product', 'edit-product'), true)) {
+				wp_register_style('panda_product_styles', get_stylesheet_directory_uri() . '/master/assets/css/product.css', array(), $version);
+				wp_enqueue_style('panda_product_styles');
+			};
+		}
+
+		/**
+		 * Enqueue scripts.
+		 */
+		public function admin_scripts()
+		{
+			$version	  = wp_get_theme()->get('Version');
+			$screen       = get_current_screen();
+			$screen_id    = $screen ? $screen->id : '';
+
+			if (in_array($screen_id, array('toplevel_page_panda_robots'), true)) {
+				wp_enqueue_media();
+
+				wp_enqueue_script('panda', get_stylesheet_directory_uri() . '/master/assets/js/admin.js', array('jquery'), $version, true);
+				wp_enqueue_script('panda_panel_uploader', get_stylesheet_directory_uri() . '/master/assets/js/custom_uploader.js', array('jquery', 'media-upload', 'thickbox', 'wp-color-picker'), $version);
+
+				wp_enqueue_script('jquery-ui-tabs');
+				wp_enqueue_script('jquery-ui-dialog');
+
+				wp_localize_script('panda_panel_uploader', 'panda_uploader', array(
+					'media_window_title' => 'Pilih Gambar',
+				));
+			}
+
+			if (in_array($screen_id, array('product', 'edit-product'))) {
+				wp_enqueue_media();
+
+				wp_register_script('panda-product', get_stylesheet_directory_uri() . '/master/assets/js/product.js', array('media-models'), $version);
+				wp_enqueue_script('panda-product');
+			}
 		}
 
 		// Builds the WP Admin Page Menus
 		public function admin_menu()
 		{
 			add_menu_page(
-				$this->panda_menu_title,
-				$this->panda_menu_title,
+				'Robot Panda',
+				'Robot Panda',
 				'manage_options',
-				$this->panda_menu_slug,
+				'panda_robots',
 				array($this, 'panda_robots_menu_page'),
 				null,
 				'3.01'
 			);
-		}
-
-		// Load Admin Menus CSS and JS
-		public function load_panda_robots_style()
-		{
-			wp_enqueue_style('wp-jquery-ui-dialog');
-			wp_enqueue_style('wp-color-picker');
-			wp_register_style(
-				'panda_robots_css',
-				get_stylesheet_directory_uri() . '/master/assets/css/panda_robots.css',
-				array(),
-				wp_get_theme()->get('Version')
-			);
-			wp_enqueue_style('panda_robots_css');
-
-			wp_enqueue_script('jquery-ui-tabs');
-			wp_enqueue_script('jquery-ui-dialog');
-			wp_enqueue_script('panda', get_stylesheet_directory_uri() . '/master/assets/js/panda_robots.js', array('jquery'), wp_get_theme()->get('Version'), true);
-			wp_enqueue_script('panda_panel_uploader', get_stylesheet_directory_uri() . '/master/assets/js/custom_uploader.js', array('jquery', 'media-upload', 'thickbox', 'wp-color-picker'), wp_get_theme()->get('Version'));
-			wp_enqueue_media();
-			wp_localize_script('panda_panel_uploader', 'panda_uploader', array(
-				'media_window_title' => 'Pilih Gambar',
-			));
 		}
 
 		// Main Pages for Admin Menus
@@ -123,11 +143,7 @@ if (!class_exists('Panda_Robots')) :
 		<?php
 		}
 
-		/**
-		 * Content for Configuration Tab
-		 *
-		 * @return null
-		 */
+		// Content for Configuration Tab
 		private function tab_configurations()
 		{
 			// Handle submit button
@@ -157,7 +173,7 @@ if (!class_exists('Panda_Robots')) :
 		?>
 			<p>Form berikut merinci data apa saja yang dibutuhkan untuk website desa Anda sehingga data akan ditampilkan secara dinamis. Silahkan diisi! Jika ada sesuatu yang tidak jelas, <a href="javascript:void(0)" class="change-tab" data-tab="3">hubungi bantuan</a> sebelum menyimpan apa pun. Lebih baik bertanya daripada tersesat!</p>
 			<hr>
-			<form action="" method="post" class="form-wrap">
+			<form action="" method="post" class="form-wrap panda-robots">
 				<div class="form-field">
 					<label for="divi_logo">Logo</label>
 					<input id="divi_logo" class="panda-upload-field" type="text" size="40" name="divi_logo" value="<?php echo et_get_option('divi_logo'); ?>" />
@@ -204,11 +220,7 @@ if (!class_exists('Panda_Robots')) :
 		<?php
 		}
 
-		/**
-		 * Content for Import Tab
-		 *
-		 * @return null
-		 */
+		// Content for Import Tab
 		private function tab_imports()
 		{
 			// Handle submit button
@@ -266,11 +278,7 @@ if (!class_exists('Panda_Robots')) :
 		<?php
 		}
 
-		/**
-		 * Content for Logs Tab
-		 *
-		 * @return null
-		 */
+		// Content for Logs Tab
 		private function tab_logs()
 		{
 			if (isset($_POST['logs_reset'])) {
@@ -280,11 +288,7 @@ if (!class_exists('Panda_Robots')) :
 			panda_display_logs();
 		}
 
-		/**
-		 * Content for Support Tab
-		 *
-		 * @return null
-		 */
+		// Content for Support Tab
 		private function tab_helps()
 		{
 		?>
@@ -293,11 +297,7 @@ if (!class_exists('Panda_Robots')) :
 		<?php
 		}
 
-		/**
-		 * Content for Feeds on Sidebar
-		 *
-		 * @return null
-		 */
+		// Content for Feeds on Sidebar
 		private function panda_feeds()
 		{
 		?>
@@ -331,7 +331,7 @@ if (!class_exists('Panda_Robots')) :
 					</a>
 				</p>
 			</div>
-		<?php
+<?php
 		}
 	}
 endif;
