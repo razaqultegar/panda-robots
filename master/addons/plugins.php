@@ -65,6 +65,12 @@ function panda_register_required_plugins()
             'required' => false,
         ),
 
+		array(
+            'name' => 'Jetpack - Keamanan, Pencadangan, Kecepatan, & Perkembangan WP',
+            'slug' => 'jetpack',
+            'required' => false,
+        ),
+
         array(
             'name' => 'WebP Express',
             'slug' => 'webp-express',
