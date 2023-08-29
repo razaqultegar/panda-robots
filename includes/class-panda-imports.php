@@ -5,7 +5,7 @@
  *
  * Functions used by import data
  *
- * @package    panda-master
+ * @package    panda-includes
  * @author     Puskomedia Indonesia <dev@puskomedia.id>
  * @copyright  2023 Puskomedia Indonesia
  * @license    GPL-2.0+

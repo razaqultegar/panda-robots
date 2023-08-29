@@ -14,10 +14,8 @@
          * @since 1.0
          */
         do_action('et_head_meta');
-
-        $template_directory_uri = get_template_directory_uri();
         ?>
-        <title><?php wp_title('-', true, 'right'); ?><?php echo (!empty(panda_get_option('alias')) ? panda_get_option('alias') : 'Desa') . ' ' . get_bloginfo('name') . ' | Kab. ' . get_bloginfo('description'); ?></title>
+        <title><?php wp_title('-', true, 'right'); ?><?php echo (!empty(panda_get_option('alias')) ? panda_get_option('alias') : 'Desa') . ' ' . get_option('blogname') . ' | Kab. ' . get_option('blogdescription'); ?></title>
         <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
         <script type="text/javascript">
             document.documentElement.className = 'js';
@@ -42,7 +40,6 @@
             <div id="top-header">
                 <div class="flex container clearfix">
                     <div id="et-info">
-                        <?php if (!empty(panda_get_option('phone'))) : ?>
                         <div class="panda-blurb">
                             <div class="panda-blurb-content">
                                 <div class="panda-blurb-image">
@@ -52,13 +49,11 @@
                                 </div>
                                 <div class="panda-blurb-container">
                                     <h4>
-                                        <span><?php echo panda_get_option('phone'); ?></span>
+                                        <span><?php echo (!empty(panda_get_option('phone')) ? panda_get_option('phone') : '+1 234 567 8'); ?></span>
                                     </h4>
                                 </div>
                             </div>
                         </div>
-                        <?php endif; ?>
-                        <?php if (!empty(get_option('admin_email'))) : ?>
                         <div class="panda-blurb">
                             <div class="panda-blurb-content">
                                 <div class="panda-blurb-image">
@@ -68,12 +63,11 @@
                                 </div>
                                 <div class="panda-blurb-container">
                                     <h4>
-                                        <span><?php echo get_bloginfo('admin_email'); ?></span>
+                                        <span><?php echo get_option('admin_email'); ?></span>
                                     </h4>
                                 </div>
                             </div>
                         </div>
-                        <?php endif; ?>
                     </div>
                     <div id="et-social">
                         <?php get_template_part('includes/social_icons', 'header'); ?>
@@ -99,7 +93,7 @@
                     <?php
                     $logo = ($user_logo = et_get_option('divi_logo')) && !empty($user_logo)
                         ? $user_logo
-                        : $template_directory_uri . '/images/logo.png';
+                        : get_stylesheet_directory_uri() . '/demo/media/logo.png';
 
                     // Get logo image size based on attachment URL.
                     $logo_size   = et_get_attachment_size_by_url($logo);
@@ -115,12 +109,12 @@
                     <div class="logo_container">
                         <span class="logo_helper"></span>
                         <a href="<?php echo esc_url(home_url('/')); ?>">
-                            <img src="<?php echo esc_attr($logo); ?>" width="<?php echo esc_attr($logo_width); ?>" height="<?php echo esc_attr($logo_height); ?>" alt="<?php echo get_bloginfo('name'); ?>" id="logo" data-height-percentage="<?php echo esc_attr(et_get_option('logo_height', '54')); ?>" />
+                            <img src="<?php echo esc_attr($logo); ?>" width="<?php echo esc_attr($logo_width); ?>" height="<?php echo esc_attr($logo_height); ?>" alt="<?php echo get_option('blogname'); ?>" id="logo" data-height-percentage="<?php echo esc_attr(et_get_option('logo_height', '54')); ?>" />
                         </a>
                         <a href="<?php echo esc_url(home_url('/')); ?>">
                             <div class="site_info">
-                                <span class="site-name"><?php echo get_bloginfo('name'); ?></span>
-                                <span class="site-description">Kab. <?php echo get_bloginfo('description'); ?></span>
+                                <span class="site-name"><?php echo get_option('blogname'); ?></span>
+                                <span class="site-description">Kab. <?php echo get_option('blogdescription'); ?></span>
                             </div>
                         </a>
                     </div>
