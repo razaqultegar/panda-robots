@@ -12,9 +12,10 @@
 
             if (!is_page_template('page-template-blank.php')) : ?>
                 <footer id="main-footer">
+                    <?php get_sidebar( 'footer' ); ?>
                     <div id="footer-bottom">
                         <div class="container clearfix">
-                            <div id="footer-info">&copy; <?php echo date('Y'); ?> Pemerintah <?php echo (!empty(panda_get_option('alias')) ? panda_get_option('alias') : 'Desa') . ' ' . get_bloginfo('name'); ?> <span class="powered-by-panda">Menggunakan <a href="https://www.panda.id/">Teknologi Panda</a></span></div>
+                            <div id="footer-info">&copy; <?php echo date('Y'); ?> Pemerintah <?php echo (!empty(panda_get_option('alias')) ? panda_get_option('alias') : 'Desa') . ' ' . get_option('blogname'); ?> <span class="powered-by-panda">Menggunakan <a href="https://www.panda.id/">Teknologi Panda</a></span></div>
                             <?php
                             get_template_part('includes/social_icons', 'footer');
                             
