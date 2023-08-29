@@ -6,7 +6,7 @@
  * Class: Panda_Robots
  * This class builds the WP Admin menu items and pages.
  *
- * @package    panda-master
+ * @package    panda-includes
  * @author     Puskomedia Indonesia <dev@puskomedia.id>
  * @copyright  2023 Puskomedia Indonesia
  * @license    GPL-2.0+
@@ -25,66 +25,7 @@ if (!class_exists('Panda_Robots')) :
 		 */
 		public function __construct()
 		{
-			add_action('admin_enqueue_scripts', array($this, 'admin_styles'));
-			add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
 			add_action('admin_menu', array($this, 'admin_menu'));
-		}
-
-		/**
-		 * Enqueue styles.
-		 */
-		public function admin_styles()
-		{
-			$version	  = wp_get_theme()->get('Version');
-			$screen       = get_current_screen();
-			$screen_id    = $screen ? $screen->id : '';
-
-			wp_register_style('panda_admin_styles', get_stylesheet_directory_uri() . '/assets/css/admin.css', array(), $version);
-			wp_enqueue_style('panda_admin_styles');
-
-			if (in_array($screen_id, array('toplevel_page_panda_robots'), true)) {
-				wp_register_style('panda_admin_menu_styles', get_stylesheet_directory_uri() . '/assets/css/menu.css', array(), $version);
-
-				wp_enqueue_style('wp-jquery-ui-dialog');
-				wp_enqueue_style('wp-color-picker');
-				wp_enqueue_style('panda_admin_menu_styles');
-			};
-
-			if (in_array($screen_id, array('product', 'edit-product'), true)) {
-				wp_register_style('panda_product_styles', get_stylesheet_directory_uri() . '/assets/css/product.css', array(), $version);
-				wp_enqueue_style('panda_product_styles');
-			};
-		}
-
-		/**
-		 * Enqueue scripts.
-		 */
-		public function admin_scripts()
-		{
-			$version	  = wp_get_theme()->get('Version');
-			$screen       = get_current_screen();
-			$screen_id    = $screen ? $screen->id : '';
-
-			if (in_array($screen_id, array('toplevel_page_panda_robots'), true)) {
-				wp_enqueue_media();
-
-				wp_enqueue_script('panda_admin_menu', get_stylesheet_directory_uri() . '/assets/js/menu.js', array('jquery'), $version, true);
-				wp_enqueue_script('panda_panel_uploader', get_stylesheet_directory_uri() . '/assets/js/custom_uploader.js', array('jquery', 'media-upload', 'thickbox', 'wp-color-picker'), $version);
-
-				wp_enqueue_script('jquery-ui-tabs');
-				wp_enqueue_script('jquery-ui-dialog');
-
-				wp_localize_script('panda_panel_uploader', 'panda_uploader', array(
-					'media_window_title' => 'Pilih Gambar',
-				));
-			}
-
-			if (in_array($screen_id, array('product', 'edit-product'))) {
-				wp_enqueue_media();
-
-				wp_register_script('panda-product', get_stylesheet_directory_uri() . '/assets/js/product.js', array('media-models'), $version);
-				wp_enqueue_script('panda-product');
-			}
 		}
 
 		// Builds the WP Admin Page Menus
@@ -196,11 +137,11 @@ if (!class_exists('Panda_Robots')) :
 				</div>
 				<div class="form-field">
 					<label for="blogname">Nama Desa</label>
-					<input type="text" id="blogname" name="blogname" value="<?php echo get_bloginfo('name'); ?>" size="40" />
+					<input type="text" id="blogname" name="blogname" value="<?php echo get_option('blogname'); ?>" size="40" />
 				</div>
 				<div class="form-field">
 					<label for="blogdescription">Kabupaten</label>
-					<input type="text" id="blogdescription" name="blogdescription" value="<?php echo get_bloginfo('description'); ?>" size="40" />
+					<input type="text" id="blogdescription" name="blogdescription" value="<?php echo get_option('blogdescription'); ?>" size="40" />
 				</div>
 				<div class="form-field">
 					<label for="address">Alamat Lengkap</label>
@@ -209,7 +150,7 @@ if (!class_exists('Panda_Robots')) :
 				</div>
 				<div class="form-field">
 					<label for="admin_email">Alamat Surel</label>
-					<input type="email" id="admin_email" name="admin_email" value="<?php echo get_bloginfo('admin_email'); ?>" size="40" />
+					<input type="email" id="admin_email" name="admin_email" value="<?php echo get_option('admin_email'); ?>" size="40" />
 				</div>
 				<div class="form-field">
 					<label for="phone">No. Telepon/WhatsApp</label>

@@ -16,3 +16,52 @@ li.toplevel_page_panda_robots div.wp-menu-image:before {
   width: 25px;
   margin-top: -5px;
 }
+
+/* Product Page */
+.post-type-product table .column-thumb {
+  text-align: center;
+  width: 5%;
+  white-space: nowrap;
+}
+
+.post-type-product table td.column-thumb img {
+  max-width: 40px;
+  max-height: 40px;
+  width: auto;
+  height: auto;
+  margin: 0px;
+  vertical-align: middle;
+}
+
+.post-type-product table span.panda-image {
+  text-indent: -9999px;
+  display: block;
+  position: relative;
+  width: 1em;
+  height: 1em;
+  margin: 0px auto;
+}
+
+.post-type-product table span.panda-image::before {
+  -webkit-font-smoothing: antialiased;
+  content: "\f128";
+  font-family: Dashicons;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  text-align: center;
+  text-indent: 0;
+  speak: never;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: 0px;
+}
+
+.post-type-product table .column-name .row-title {
+  font-size: 14px !important;
+  font-weight: 600;
+}
