@@ -51,7 +51,7 @@ if (!class_exists('Panda_Robots')) :
 					<img id="logo-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/panda.png" title="Robot Panda" alt="Robot Panda" />
 				</header>
 				<div class="col-left">
-					<div id="panda-tabs" class="ui-tabs" style="display:none">
+					<div id="panda-tabs" class="ui-tabs" style="display: none;">
 						<nav>
 							<div class="panda-container">
 								<ul class="panda-main-tab">
@@ -64,16 +64,16 @@ if (!class_exists('Panda_Robots')) :
 						</nav>
 						<div class="panda-container">
 							<div id="panda-content">
-								<div id="tab-configurations" style="display:none">
+								<div id="tab-configurations" style="display: none;">
 									<?php echo $this->tab_configurations(); ?>
 								</div>
-								<div id="tab-imports" style="display:none">
+								<div id="tab-imports" style="display: none;">
 									<?php echo $this->tab_imports(); ?>
 								</div>
-								<div id="tab-logs" style="display:none">
+								<div id="tab-logs" style="display: none;">
 									<?php echo $this->tab_logs(); ?>
 								</div>
-								<div id="tab-helps" style="display:none">
+								<div id="tab-helps" style="display: none;">
 									<?php echo $this->tab_helps(); ?>
 								</div>
 							</div>

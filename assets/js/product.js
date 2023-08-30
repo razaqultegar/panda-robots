@@ -5,24 +5,6 @@ jQuery(function ($) {
     isPageUnloading = true;
   });
 
-  // Scroll to first checked category
-  // https://github.com/scribu/wp-category-checklist-tree/blob/d1c3c1f449e1144542efa17dde84a9f52ade1739/category-checklist-tree.php
-  $(function () {
-    $('[id$="-all"] > ul.categorychecklist').each(function () {
-      var $list = $(this);
-      var $firstChecked = $list.find(":checked").first();
-
-      if (!$firstChecked.length) {
-        return;
-      }
-
-      var pos_first = $list.find("input").position().top;
-      var pos_checked = $firstChecked.position().top;
-
-      $list.closest(".tabs-panel").scrollTop(pos_checked - pos_first + 5);
-    });
-  });
-
   // Product gallery file uploads.
   var product_gallery_frame;
   var $image_gallery_ids = $("#product_image_gallery");

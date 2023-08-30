@@ -33,7 +33,7 @@ function panda_register_posttypes()
             'view_items'            => __('Lihat produk', 'panda-addons'),
             'search_items'          => __('Cari produk', 'panda-addons'),
             'not_found'             => __('Tidak ada produk yang ditemukan', 'panda-addons'),
-            'not_found_in_trash'    => __('Tidak ada produk yang ditemukan di tempat sampah', 'panda-addons'),
+            'not_found_in_trash'    => __('Tidak ada produk yang ditemukan di tong sampah', 'panda-addons'),
             'featured_image'        => __('Gambar produk', 'panda-addons'),
             'set_featured_image'    => __('Tetapkan gambar produk', 'panda-addons'),
             'remove_featured_image' => __('Hapus gambar produk', 'panda-addons'),
@@ -93,6 +93,59 @@ function panda_register_posttypes()
     register_taxonomy('product_cat', array('product'), $product_cat);
 }
 add_action('init', 'panda_register_posttypes');
+
+/**
+ * Change messages when a post type is updated.
+ *
+ * @param  array $messages Array of messages.
+ * @return array
+ */
+function post_updated_messages($messages)
+{
+    global $post;
+
+    $messages['product'] = array(
+        0  => '', // Unused. Messages start at index 1.
+        1  => sprintf(__('Produk diperbarui. %1$sLihat Produk%2$s', 'panda-addons'), '<a id="panda-product-updated-message-view-product__link" href="' . esc_url(get_permalink($post->ID)) . '">', '</a>'),
+        2  => __('Bidang khusus diperbarui.', 'panda-addons'),
+        3  => __('Bidang khusus dihapus.', 'panda-addons'),
+        4  => __('Produk diperbarui.', 'panda-addons'),
+        5  => __('Revisi dipulihkan.', 'panda-addons'),
+        6  => sprintf(__('Produk diterbitkan. %1$sLihat Produk%2$s', 'panda-addons'), '<a id="panda-product-updated-message-view-product__link" href="' . esc_url(get_permalink($post->ID)) . '">', '</a>'),
+        7  => __('Produk disimpan.', 'panda-addons'),
+        8  => sprintf(__('Produk dikirimkan. <a target="_blank" href="%s">Pratinjau produk</a>', 'panda-addons'), esc_url(add_query_arg('preview', 'true', get_permalink($post->ID)))),
+        9  => sprintf(
+            __('Produk dijadwalkan untuk: %1$s. <a target="_blank" href="%2$s">Pratinjau produk</a>', 'panda-addons'),
+            '<strong>' . date_i18n(__('M j, Y @ G:i', 'panda-addons'), strtotime($post->post_date)) . '</strong>',
+            esc_url(get_permalink($post->ID))
+        ),
+        10 => sprintf(__('Draf produk diperbarui. <a target="_blank" href="%s">Pratinjau produk</a>', 'panda-addons'), esc_url(add_query_arg('preview', 'true', get_permalink($post->ID)))),
+    );
+
+    return $messages;
+}
+add_filter('post_updated_messages', 'post_updated_messages');
+
+/**
+ * Specify custom bulk actions messages for different post types.
+ *
+ * @param  array $bulk_messages Array of messages.
+ * @param  array $bulk_counts Array of how many objects were updated.
+ * @return array
+ */
+function bulk_post_updated_messages($bulk_messages, $bulk_counts)
+{
+    $bulk_messages['product'] = array(
+        'updated'   => _n('%s produk diperbarui.', '%s products updated.', $bulk_counts['updated'], 'panda-addons'),
+        'locked'    => _n('%s produk tidak diperbarui, seseorang sedang mengeditnya.', '%s produk tidak diperbarui, seseorang sedang mengeditnya.', $bulk_counts['locked'], 'panda-addons'),
+        'deleted'   => _n('%s produk dihapus secara permanen.', '%s produk dihapus secara permanen.', $bulk_counts['deleted'], 'panda-addons'),
+        'trashed'   => _n('%s produk dipindahkan ke Tong Sampah.', '%s produk dipindahkan ke Tong Sampah.', $bulk_counts['trashed'], 'panda-addons'),
+        'untrashed' => _n('%s produk dipulihkan dari Tong Sampah.', '%s produk dipulihkan dari Tong Sampah.', $bulk_counts['untrashed'], 'panda-addons'),
+    );
+
+    return $bulk_messages;
+}
+add_filter('bulk_post_updated_messages', 'bulk_post_updated_messages', 10, 2);
 
 /**
  * Define primary column.

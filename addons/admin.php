@@ -36,29 +36,59 @@ function panda_site_menu()
         )
     );
 }
-add_action('wp_before_admin_bar_render', 'panda_site_menu', 999);
+add_action('wp_before_admin_bar_render', 'panda_site_menu', 31);
+
+/**
+ * Add the "Visit Store" link in admin bar main menu.
+ *
+ * @param WP_Admin_Bar $wp_admin_bar Admin bar instance.
+ */
+function admin_bar_menus($wp_admin_bar)
+{
+    if (!is_admin() || !is_admin_bar_showing()) {
+        return;
+    }
+
+    // Show only when the user is a member of this site, or they're a super admin.
+    if (!is_user_member_of_blog() && !is_super_admin()) {
+        return;
+    }
+
+    // Don't display when shop page is the same of the page on front.
+    if (intval(get_option('page_on_front')) === panda_get_page_id('shop')) {
+        return;
+    }
+
+    // Add an option to visit the store.
+    $wp_admin_bar->add_node(
+        array(
+            'parent' => 'site-name',
+            'id'     => 'view-store',
+            'title'  => __('Kunjungi Toko', 'panda-addons'),
+            'href'   => panda_get_page_permalink('shop'),
+        )
+    );
+}
+add_action('admin_bar_menu', 'admin_bar_menus', 31);
 
 // Enqueue admin styles
 function admin_styles()
 {
-    $version	  = wp_get_theme()->get('Version');
+    $version      = wp_get_theme()->get('Version');
     $screen       = get_current_screen();
     $screen_id    = $screen ? $screen->id : '';
 
-    wp_register_style('panda_admin_styles', get_stylesheet_directory_uri() . '/assets/css/admin.css', array(), $version);
-    wp_enqueue_style('panda_admin_styles');
+    wp_enqueue_style('panda_admin_styles', get_stylesheet_directory_uri() . '/assets/css/admin.css', array(), $version);
 
     if (in_array($screen_id, array('toplevel_page_panda_robots'), true)) {
-        wp_register_style('panda_admin_menu_styles', get_stylesheet_directory_uri() . '/assets/css/menu.css', array(), $version);
+        wp_enqueue_style('panda_admin_menu_styles', get_stylesheet_directory_uri() . '/assets/css/menu.css', array(), $version);
 
         wp_enqueue_style('wp-jquery-ui-dialog');
         wp_enqueue_style('wp-color-picker');
-        wp_enqueue_style('panda_admin_menu_styles');
     };
 
     if (in_array($screen_id, array('product', 'edit-product'), true)) {
-        wp_register_style('panda_product_styles', get_stylesheet_directory_uri() . '/assets/css/product.css', array(), $version);
-        wp_enqueue_style('panda_product_styles');
+        wp_enqueue_style('panda_product_styles', get_stylesheet_directory_uri() . '/assets/css/product.css', array(), $version);
     };
 }
 add_action('admin_enqueue_scripts', 'admin_styles');
@@ -66,7 +96,7 @@ add_action('admin_enqueue_scripts', 'admin_styles');
 // Enqueue admin scripts
 function admin_scripts()
 {
-    $version	  = wp_get_theme()->get('Version');
+    $version      = wp_get_theme()->get('Version');
     $screen       = get_current_screen();
     $screen_id    = $screen ? $screen->id : '';
 

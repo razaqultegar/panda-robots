@@ -56,10 +56,6 @@ function panda_get_option($option_name, $default_value = '', $force_default_valu
         $option_value = $default_value;
     }
 
-    if (!empty($et_one_row_option_name)) {
-        $option_value = apply_filters('panda_get_option_' . $et_one_row_option_name, $option_value, $et_one_row_option_name);
-    }
-
     return $option_value;
 }
 
