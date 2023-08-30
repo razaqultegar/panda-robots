@@ -16,13 +16,31 @@ if (!defined('ABSPATH')) {
 global $post;
 ?>
 
-<li <?php panda_product_class('', $post); ?>>
-	<a href="<?php the_permalink(); ?>">
-		<span class="et_shop_image">
-			<img src="<?php the_post_thumbnail_url(); ?>" class="attachment-panda_thumbnail size-panda_thumbnail" alt="<?php the_title(); ?>" width="300" height="300" decoding="async" loading="lazy">
-			<span class="onsale">Promo!</span>
-		</span>
-		<h2 class="panda-loop-product__title"><?php the_title(); ?></h2>
-		<?php get_template_part('templates/loop/price'); ?>
-	</a>
-</li>
+<div <?php panda_product_class('', $post); ?>>
+	<div class="product-box">
+		<div class="product-wrapper">
+			<div class="product-card">
+				<div class="product-card_wrapper">
+					<div class="product-card_container">
+						<div class="product-card_thumbnail">
+							<a href="<?php the_permalink(); ?>">
+								<div>
+									<img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>">
+								</div>
+							</a>
+						</div>
+						<div class="product-card_info">
+							<a href="<?php the_permalink(); ?>" class="product-info_content" title="<?php the_title(); ?>">
+								<div class="product-content_name"><?php the_title(); ?></div>
+								<?php
+								get_template_part('templates/loop/price');
+								get_template_part('templates/loop/seller');
+								?>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

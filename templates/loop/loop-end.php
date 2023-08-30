@@ -14,4 +14,4 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-</ul>
+</div>

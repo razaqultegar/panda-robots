@@ -16,11 +16,13 @@ if (!defined('ABSPATH')) {
 global $post;
 ?>
 
-<span class="price">
+<div class="product-content_price">
+    
     <?php if (!empty(get_post_meta($post->ID, 'sale_price', true))) { ?>
-        <del aria-hidden="true"><?php echo panda_currency(get_post_meta($post->ID, 'regular_price', true)); ?></del>
-        <ins><?php echo panda_currency(get_post_meta($post->ID, 'sale_price', true)); ?></ins>
-    <?php } else {
-        echo panda_currency(get_post_meta($post->ID, 'regular_price', true));
-    } ?>
-</span>
+        <div><?php echo panda_currency(get_post_meta($post->ID, 'sale_price', true)); ?></div>
+        <div><?php echo panda_currency(get_post_meta($post->ID, 'regular_price', true)); ?></div>
+    <?php } else { ?>
+        <div><?php echo panda_currency(get_post_meta($post->ID, 'regular_price', true)); ?></div>
+    <?php } ?>
+    
+</div>

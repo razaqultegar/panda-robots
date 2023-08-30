@@ -14,4 +14,4 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-<ul class="products columns-4">
+<div class="products columns-5">
