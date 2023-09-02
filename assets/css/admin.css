@@ -65,3 +65,8 @@ li.toplevel_page_panda_robots div.wp-menu-image:before {
   font-size: 14px !important;
   font-weight: 600;
 }
+
+/* Themes Page */
+.theme-overlay .theme-info h3.notice-title {
+  display: none;
+}
