@@ -163,6 +163,7 @@ require_once $panda_path . '/addons/metaboxes.php';
 require_once $panda_path . '/addons/plugins.php';
 require_once $panda_path . '/addons/products.php';
 require_once $panda_path . '/addons/shortcodes.php';
+require_once $panda_path . '/addons/themes.php';
 
 // Load Panda Robot menu
 $panda_robots = new Panda_Robots();
