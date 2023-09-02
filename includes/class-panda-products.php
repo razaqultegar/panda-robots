@@ -37,9 +37,18 @@ function panda_clean($var)
  * @param string $page Page slug.
  * @return int
  */
-function panda_get_page_id($page)
+function panda_get_page_id()
 {
-    return $page ? absint($page) : -1;
+    $args  = array(
+        'post_name'   => 'produk-warga',
+        'post_type'   => 'page',
+        'post_status' => 'publish',
+    );
+    $query = new WP_Query($args);
+    $pages = $query->posts;
+    $page = $pages[0];
+
+    return $page ? $page->ID : -1;
 }
 
 /**
@@ -49,9 +58,9 @@ function panda_get_page_id($page)
  * @param string|bool $fallback Fallback URL if page is not set. Defaults to home URL.
  * @return string
  */
-function panda_get_page_permalink($page, $fallback = null)
+function panda_get_page_permalink($fallback = null)
 {
-    $page_id   = panda_get_page_id($page);
+    $page_id   = panda_get_page_id();
     $permalink = 0 < $page_id ? get_permalink($page_id) : '';
 
     if (!$permalink) {
@@ -68,7 +77,7 @@ function panda_get_page_permalink($page, $fallback = null)
  */
 function is_shop()
 {
-    return (is_post_type_archive('product') || is_page(panda_get_page_id('shop')));
+    return (is_post_type_archive('product') || is_page(panda_get_page_id()));
 }
 
 /**
@@ -102,7 +111,7 @@ function panda_body_class($classes)
 {
     $classes = (array) $classes;
 
-    if (is_shop()) {
+    if (is_shop() || is_product()) {
         $classes[] = 'et_full_width_page';
     }
 
@@ -247,4 +256,3 @@ function panda_photoswipe()
 {
     get_template_part('templates/single-product/photoswipe');
 }
-add_action('wp_footer', 'panda_photoswipe');

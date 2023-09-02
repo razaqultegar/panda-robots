@@ -27,6 +27,9 @@ function panda_remove_project()
     unregister_taxonomy('project_category');
     unregister_taxonomy('project_tag');
 
+    // Advanced iFrame
+    unregister_post_type('ai_content_page');
+
     // WordPress
     add_filter('gutenberg_use_widgets_block_editor', '__return_false');
     add_filter('use_widgets_block_editor', '__return_false');
@@ -73,6 +76,7 @@ function panda_enqueue_scripts()
             $version,
             true
         );
+        add_action('wp_footer', 'panda_photoswipe');
 
         wp_localize_script(
             'panda-single-product',
@@ -123,7 +127,7 @@ function panda_accent_color()
     {background-image: linear-gradient(to bottom, ' . esc_attr(panda_get_option('accent_color')) . ' 0%, ' . esc_attr(panda_get_option('accent_color')) . ' 98%) !important;}
 
     /* Background Color - Mark Shy */
-    mark-shy-text,.single-product #product_header .product-header_price .onsale div:nth-child(1)
+    mark-shy-text,.post-type-archive-product .product .product-content_price .onsale div:nth-child(1),.single-product #product_header .product-header_price .onsale div:nth-child(1)
     {background-color: ' . esc_attr(panda_get_option('accent_color')) . '1a !important;}
 
     /* Border Color */
@@ -135,7 +139,7 @@ function panda_accent_color()
     {box-shadow: 35px -15px 0px ' . esc_attr(panda_get_option('accent_color')) . '1f, -25px 15px 0px ' . esc_attr(panda_get_option('accent_color')) . '1f !important;}
 
     /* Color */
-    span.site-description,.mobile_menu_bar:before,.mobile_menu_bar:after,#top-menu li.current-menu-ancestor>a,#top-menu li.current-menu-item>a,.text-primary,hr.hr-primary,#page-container span.menu-closed:before,.link-effect a,mark-shy-text,.panda-team p, .panda-percent .percent-value,.et_clickable:hover .et_pb_module_header span,.panda_blurb:hover .et_pb_module_header a,.panda_blurb .et-pb-icon,.panda-blog-grid .et_pb_post:hover .entry-title a,.panda-blog-grid:hover .not-found-title,.panda-blog-list .et_pb_post:hover .entry-title a, .panda-blog-list:hover .not-found-title,.et_pb_post_content_0_tb_body.et_pb_post_content a,.panda-accordion .et_pb_toggle_title:before,.panda-dak-menu ul li.current-menu-item a,.post-type-archive-product .product .product-content_sale div:nth-child(1),.post-type-archive-product .product .product-content_price,.single-product #product_header .product-header_price .onsale div:nth-child(1),.single-product #product_content .product-content_more,.powered-by-panda,#footer-info a,#et-footer-nav .bottom-nav li.current-menu-item a
+    span.site-description,.mobile_menu_bar:before,.mobile_menu_bar:after,#top-menu li.current-menu-ancestor>a,#top-menu li.current-menu-item>a,.text-primary,hr.hr-primary,#page-container span.menu-closed:before,.link-effect a,mark-shy-text,.panda-team p, .panda-percent .percent-value,.et_clickable:hover .et_pb_module_header span,.panda_blurb:hover .et_pb_module_header a,.panda_blurb .et-pb-icon,.panda-blog-grid .et_pb_post:hover .entry-title a,.panda-blog-grid:hover .not-found-title,.panda-blog-list .et_pb_post:hover .entry-title a, .panda-blog-list:hover .not-found-title,.et_pb_post_content_0_tb_body.et_pb_post_content a,.panda-accordion .et_pb_toggle_title:before,.panda-dak-menu ul li.current-menu-item a,.post-type-archive-product .product .product-content_price .onsale div:nth-child(1),.post-type-archive-product .product .product-content_price,.single-product #product_header .product-header_price .onsale div:nth-child(1),.single-product #product_content .product-content_more,.powered-by-panda,#footer-info a,#et-footer-nav .bottom-nav li.current-menu-item a
     {color: ' . esc_attr(panda_get_option('accent_color')) . ' !important;}
 
     </style>';

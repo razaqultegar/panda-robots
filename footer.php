@@ -36,7 +36,7 @@
                     </div>
                 </footer>
             </div>
-            <?php endif; // ! is_page_template( 'page-template-blank.php' ) ?>
+            <?php endif; ?>
         </div>
     <?php wp_footer(); ?>
     </body>

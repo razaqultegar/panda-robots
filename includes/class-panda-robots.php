@@ -48,7 +48,7 @@ if (!class_exists('Panda_Robots')) :
 ?>
 			<div class="wrap">
 				<header>
-					<img id="logo-icon" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/panda.png" title="Robot Panda" alt="Robot Panda" />
+					<img id="logo-icon" src="<?php echo get_stylesheet_directory_uri() . '/assets/images/panda.png'; ?>" title="Robot Panda" alt="Robot Panda" />
 				</header>
 				<div class="col-left">
 					<div id="panda-tabs" class="ui-tabs" style="display: none;">

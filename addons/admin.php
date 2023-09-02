@@ -55,7 +55,7 @@ function admin_bar_menus($wp_admin_bar)
     }
 
     // Don't display when shop page is the same of the page on front.
-    if (intval(get_option('page_on_front')) === panda_get_page_id('shop')) {
+    if (intval(get_option('page_on_front')) === panda_get_page_id()) {
         return;
     }
 
@@ -65,7 +65,7 @@ function admin_bar_menus($wp_admin_bar)
             'parent' => 'site-name',
             'id'     => 'view-store',
             'title'  => __('Kunjungi Toko', 'panda-addons'),
-            'href'   => panda_get_page_permalink('shop'),
+            'href'   => panda_get_page_permalink(),
         )
     );
 }
@@ -131,7 +131,7 @@ add_action('admin_enqueue_scripts', 'admin_scripts');
  */
 function add_display_post_states($post_states, $post)
 {
-    if (panda_get_page_id('shop') === $post->ID) {
+    if (panda_get_page_id() === $post->ID) {
         $post_states['panda_page_for_shop'] = __('Halaman Toko', 'panda-addons');
     }
 
@@ -146,7 +146,7 @@ add_filter('display_post_states', 'add_display_post_states', 10, 2);
  */
 function show_cpt_archive_notice($post)
 {
-    $shop_page_id = panda_get_page_id('shop');
+    $shop_page_id = panda_get_page_id();
 
     if ($post && absint($post->ID) === $shop_page_id) {
         echo '<div class="notice notice-info">';

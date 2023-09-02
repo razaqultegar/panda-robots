@@ -36,17 +36,14 @@ function panda_options_stored_in_one_row()
  */
 function panda_get_option($option_name, $default_value = '', $force_default_value = false)
 {
-    $et_one_row_option_name = '';
-
     if (panda_options_stored_in_one_row()) {
         $et_theme_options_name = 'panda_settings';
 
         if (!isset($et_theme_options)) {
             $et_theme_options = get_option($et_theme_options_name);
         }
-        $option_value = isset($et_theme_options[$option_name]) ? $et_theme_options[$option_name] : false;
 
-        $et_one_row_option_name = $et_theme_options_name . '_' . $option_name;
+        $option_value = isset($et_theme_options[$option_name]) ? $et_theme_options[$option_name] : false;
     } else {
         $option_value = $force_default_value ? get_option($option_name, $default_value) : get_option($option_name);
     }

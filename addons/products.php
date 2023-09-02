@@ -163,23 +163,6 @@ function table_product_primary_column($default, $screen)
 add_filter('list_table_primary_column', 'table_product_primary_column', 10, 2);
 
 /**
- * Get row actions to show in the list table.
- *
- * @param array   $actions Array of actions.
- * @param WP_Post $post Current post object.
- * @return array
- */
-function table_product_row_actions($actions, $post)
-{
-    if ($post->post_type == "product") {
-        return array_merge(array('id' => sprintf(__('ID: %d', 'panda-addons'), $post->ID)), $actions);
-    }
-
-    return $actions;
-}
-add_filter('post_row_actions', 'table_product_row_actions', 100, 2);
-
-/**
  * Define which columns to show on this screen.
  *
  * @param array $columns Existing columns.
@@ -247,11 +230,7 @@ add_action('manage_product_posts_custom_column', 'render_product_column', 10, 2)
  */
 function define_sortable_columns($columns)
 {
-    $custom = array(
-        'name'  => 'title',
-        'price' => 'price',
-    );
-
+    $custom = array('name' => 'title');
     return wp_parse_args($custom, $columns);
 }
 add_filter('manage_edit-product_sortable_columns', 'define_sortable_columns');
