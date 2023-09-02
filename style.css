@@ -48,6 +48,10 @@ hr.hr-primary {
   margin-bottom: 20px;
 }
 
+.text-bold {
+  font-weight: 700 !important;
+}
+
 .link-effect a {
   cursor: pointer;
   background: linear-gradient(to bottom, #3a9bd5 0%, #3a9bd5 98%);
@@ -723,7 +727,7 @@ span.site-description {
   -webkit-box-orient: vertical;
 }
 
-.post-type-archive-product .product .product-content_price {
+.post-type-archive-product .product .product-content_price .price {
   color: #3a9bd5;
   font-size: 14px;
   font-weight: 700;
@@ -735,10 +739,36 @@ span.site-description {
   white-space: nowrap;
 }
 
-.post-type-archive-product .product .product-content_price div:nth-child(2) {
+.post-type-archive-product .product .product-content_price .onsale {
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  margin: 4px 0px;
+}
+
+.post-type-archive-product
+  .product
+  .product-content_price
+  .onsale
+  div:nth-child(1) {
+  border-radius: 3px;
+  background-color: #3a9bd51a;
+  color: #3a9bd5;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 4px;
+}
+
+.post-type-archive-product
+  .product
+  .product-content_price
+  .onsale
+  div:nth-child(2) {
   color: #2e3137;
-  font-size: 0.71rem;
-  font-weight: 400;
   text-decoration: line-through;
   text-overflow: ellipsis;
   max-width: 100px;
@@ -944,7 +974,6 @@ span.site-description {
 
 .single-product #product_seller .product_seller-info {
   display: flex;
-  align-items: center;
 }
 
 .single-product #product_seller .product_seller-logo {

@@ -17,12 +17,15 @@ global $post;
 ?>
 
 <div class="product-content_price">
-    
+
     <?php if (!empty(get_post_meta($post->ID, 'sale_price', true))) { ?>
-        <div><?php echo panda_currency(get_post_meta($post->ID, 'sale_price', true)); ?></div>
-        <div><?php echo panda_currency(get_post_meta($post->ID, 'regular_price', true)); ?></div>
+        <div class="price"><?php echo panda_currency(get_post_meta($post->ID, 'sale_price', true)); ?></div>
+        <div class="onsale">
+            <div>Sedang Promo</div>
+            <div><?php echo panda_currency(get_post_meta($post->ID, 'regular_price', true)); ?></div>
+        </div>
     <?php } else { ?>
-        <div><?php echo panda_currency(get_post_meta($post->ID, 'regular_price', true)); ?></div>
+        <div class="price"><?php echo panda_currency(get_post_meta($post->ID, 'regular_price', true)); ?></div>
     <?php } ?>
     
 </div>
