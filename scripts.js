@@ -1,4 +1,12 @@
 (function ($) {
+  $(document).ready(function () {
+    $(".panda-custom-dropdown-content").hide();
+    $(".panda-custom-menu").click(function (e) {
+      e.preventDefault();
+      $(".panda-custom-dropdown-content").toggle();
+    });
+  });
+
   function setup_collapsible_submenus() {
     // mobile menu
     $(".mobile_nav .menu-item-has-children > a").after(

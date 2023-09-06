@@ -156,7 +156,7 @@
                         </nav>
 
                         <div class="panda-top-button">
-                            <a href="javascript:void(0)" class="et_pb_button molti-custom-menu">Layanan Online</a>
+                            <a href="javascript:void(0)" class="et_pb_button panda-custom-menu">Layanan Online</a>
 					    </div>
 
                         <?php
@@ -168,6 +168,41 @@
                         do_action('et_header_top');
                         ?>
                     </div> <!-- #et-top-navigation -->
+                    <div class="et_pb_section panda-custom-dropdown-content">
+                        <div class="et_pb_row et_pb_gutters2">
+                            <div class="et_pb_column et_pb_column_1_2">
+                                <div class="et_pb_module et_pb_blurb panda-custom-dropdown-item et_clickable et_pb_text_align_left et_pb_blurb_position_left">
+                                    <div class="et_pb_blurb_content">
+                                        <div class="et_pb_main_blurb_image"><a href="/permohonan/"><span class="et_pb_image_wrap"><span class="et_pb_animation_off et-pb-icon message"></span></span></a></div>
+                                        <div class="et_pb_blurb_container">
+                                            <h4 class="et_pb_module_header"><a href="/permohonan/">Permohonan Online</a></h4>
+                                            <div class="et_pb_blurb_description"><p>Anda dapat mengajukan secara permohonan online</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="et_pb_module et_pb_blurb panda-custom-dropdown-item et_clickable et_pb_text_align_left et_pb_blurb_position_left">
+                                    <div class="et_pb_blurb_content">
+                                        <div class="et_pb_main_blurb_image"><a href="/produk-warga/"><span class="et_pb_image_wrap"><span class="et_pb_animation_off et-pb-icon product"></span></span></a></div>
+                                        <div class="et_pb_blurb_container">
+                                            <h4 class="et_pb_module_header"><a href="/produk-warga/">Produk Warga</a></h4>
+                                            <div class="et_pb_blurb_description"><p>Jelajahi produk lokal buatan dari para warga kami untuk Anda</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="et_pb_column et_pb_column_1_2 et-last-child">
+                                <div class="et_pb_module et_pb_blurb panda-custom-dropdown-item et_clickable et_pb_text_align_left et_pb_blurb_position_left">
+                                    <div class="et_pb_blurb_content">
+                                        <div class="et_pb_main_blurb_image"><a href="/kontak/"><span class="et_pb_image_wrap"><span class="et_pb_animation_off et-pb-icon report"></span></span></a></div>
+                                        <div class="et_pb_blurb_container">
+                                            <h4 class="et_pb_module_header"><a href="/kontak/">Lapor/Aduan/Saran</a></h4>
+                                            <div class="et_pb_blurb_description"><p>Anda dapat melaporkan aduan dan memberi saran maupun kritik</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div> <!-- .container -->
             </header> <!-- #main-header -->
             <?php

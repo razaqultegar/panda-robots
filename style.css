@@ -91,6 +91,34 @@ hr.hr-primary {
   }
 }
 
+@-webkit-keyframes scale-in-tr {
+  0% {
+    transform: scale(0);
+    transform-origin: 100% 0%;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    transform-origin: 100% 0%;
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in-tr {
+  0% {
+    transform: scale(0);
+    transform-origin: 100% 0%;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    transform-origin: 100% 0%;
+    opacity: 1;
+  }
+}
+
 /* Top Header */
 #top-header {
   background-color: #2ea3f2;
@@ -470,6 +498,78 @@ span.site-description {
   display: none;
 }
 
+.panda-custom-dropdown-content {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 10px 29px 6px rgba(0, 0, 0, 0.08);
+  display: none;
+  position: absolute;
+  width: 795px;
+  top: 120px;
+  left: auto;
+  bottom: -320px;
+  right: 0px;
+  padding: 20px !important;
+  animation: scale-in-tr 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.panda-custom-dropdown-content:before {
+  content: "";
+  border-top: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #ffffff;
+  border-left: 15px solid transparent;
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  top: -29px;
+  right: 3.5%;
+  z-index: 1;
+}
+
+@media (min-width: 981px) {
+  .panda-custom-dropdown-content .et_pb_gutters2 .et_pb_column_1_2 {
+    width: 48.5%;
+    margin-right: 3%;
+  }
+
+  .panda-custom-dropdown-content  .et_pb_gutters2 .et_pb_column_1_2 .et_pb_module {
+    margin-bottom: 3.093%;
+  }
+}
+
+.panda-custom-dropdown-content .et_pb_row {
+  width: 100%;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.panda-custom-dropdown-item {
+  border-radius: 7px;
+  padding: 20px;
+}
+
+.panda-custom-dropdown-item:hover {
+  background-color: #3a9bd51a;
+}
+
+.panda-custom-dropdown-item .et-pb-icon {
+  color: #3a9bd5 !important;
+}
+
+.panda-custom-dropdown-item .et-pb-icon.message:before {
+  content: "\e076";
+}
+
+.panda-custom-dropdown-item .et-pb-icon.product:before {
+  content: "\e07a";
+}
+
+.panda-custom-dropdown-item .et-pb-icon.report:before {
+  content: "\e066";
+}
+
 /* Page Content */
 #page-container {
   overflow: hidden;
@@ -500,12 +600,12 @@ span.site-description {
   transform: scale(1.2);
 }
 
-.molti-view-button {
+.panda-view-button {
   opacity: 0;
   animation: fade-out-bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-.molti-column:hover .molti-view-button {
+.panda-column:hover .panda-view-button {
   opacity: 1;
   animation: fade-in-bottom 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
